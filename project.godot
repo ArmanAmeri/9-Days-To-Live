@@ -14,6 +14,10 @@ config/name="9 Days To Live"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
+[aseprite]
+
+animation/layers/only_include_visible_layers_by_default=true
+
 [display]
 
 window/size/viewport_width=640
