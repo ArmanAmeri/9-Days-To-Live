@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://wv3abl31ronq"]
+[gd_scene load_steps=9 format=3 uid="uid://bnm134g8irktv"]
 
 [ext_resource type="Texture2D" uid="uid://1ach5mskwlu7" path="res://Assets/Sprites/Characters/playerTestSprite.png" id="1_cmar5"]
+[ext_resource type="PackedScene" uid="uid://c5w2f44wlbeyd" path="res://Scenes/Components/health_component.tscn" id="2_54ccj"]
+[ext_resource type="PackedScene" uid="uid://dufp4cjrdgk4t" path="res://Scenes/Components/movement_component.tscn" id="3_vwc2x"]
+[ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="4_lx0ai"]
 
 [sub_resource type="Animation" id="Animation_p8ybc"]
 length = 0.4
@@ -22,6 +25,13 @@ tracks/0/keys = {
 _data = {
 "default": SubResource("Animation_p8ybc")
 }
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lmh4r"]
+radius = 7.0
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_86m0y"]
+height = 44.0
 
 [node name="Player" type="CharacterBody2D"]
 
@@ -54,3 +64,20 @@ metadata/_aseprite_wizard_source_file_hash_ = "644a8e28f8021ae9402b032f143d6b85"
 libraries = {
 "": SubResource("AnimationLibrary_66x7y")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 18)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lmh4r")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_54ccj")]
+
+[node name="MovementComponent" parent="." instance=ExtResource("3_vwc2x")]
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("4_lx0ai")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_86m0y")
