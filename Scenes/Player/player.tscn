@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://wv3abl31ronq"]
+[gd_scene load_steps=5 format=3 uid="uid://bnm134g8irktv"]
 
 [ext_resource type="Texture2D" uid="uid://1ach5mskwlu7" path="res://Assets/Sprites/Characters/playerTestSprite.png" id="1_cmar5"]
 
@@ -22,6 +22,10 @@ tracks/0/keys = {
 _data = {
 "default": SubResource("Animation_p8ybc")
 }
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lmh4r"]
+radius = 7.0
+height = 20.0
 
 [node name="Player" type="CharacterBody2D"]
 
@@ -54,3 +58,8 @@ metadata/_aseprite_wizard_source_file_hash_ = "644a8e28f8021ae9402b032f143d6b85"
 libraries = {
 "": SubResource("AnimationLibrary_66x7y")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 18)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lmh4r")
