@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://wv3abl31ronq"]
+
+[ext_resource type="Texture2D" uid="uid://1ach5mskwlu7" path="res://Assets/Sprites/Characters/playerTestSprite.png" id="1_cmar5"]
+
+[sub_resource type="Animation" id="Animation_p8ybc"]
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_66x7y"]
+_data = {
+"default": SubResource("Animation_p8ybc")
+}
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_cmar5")
+hframes = 2
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": true,
+"layer_section": true,
+"output_section": true,
+"pending_changes": {},
+"slice_section": true
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "res://Assets/Sprites/Characters",
+"o_name": "",
+"only_visible": true,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://Assets/Aseprite/playerTestSprite.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "644a8e28f8021ae9402b032f143d6b85"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_66x7y")
+}
