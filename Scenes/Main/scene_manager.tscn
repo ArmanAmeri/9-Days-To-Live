@@ -1,3 +1,14 @@
-[gd_scene format=3 uid="uid://ba7ifu0k4yriy"]
+[gd_scene load_steps=3 format=3 uid="uid://ba7ifu0k4yriy"]
+
+[ext_resource type="PackedScene" uid="uid://bib3plfdoib4" path="res://Scenes/World/main.tscn" id="1_yg0ss"]
+[ext_resource type="PackedScene" uid="uid://wv3abl31ronq" path="res://Scenes/Player/player.tscn" id="2_o34v0"]
 
 [node name="SceneManager" type="Node"]
+
+[node name="Main" parent="." instance=ExtResource("1_yg0ss")]
+
+[node name="Player" parent="." instance=ExtResource("2_o34v0")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
