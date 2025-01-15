@@ -2,7 +2,7 @@ extends Node2D
 
 signal move_input(direction: Vector2)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var direction = Vector2.ZERO
 	if Input.is_action_pressed("ui_right"):
 		direction.x += 1

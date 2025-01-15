@@ -9,7 +9,7 @@ var velocity: Vector2 = Vector2.ZERO
 # Reference to the parent CharacterBody2D
 @onready var character_body = get_parent() as CharacterBody2D
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if character_body:
 		if velocity != Vector2.ZERO:
 			character_body.velocity = velocity.normalized() * speed
