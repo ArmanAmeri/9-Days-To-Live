@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://wv3abl31ronq"]
+[gd_scene load_steps=11 format=3 uid="uid://bnm134g8irktv"]
 
 [ext_resource type="Texture2D" uid="uid://1ach5mskwlu7" path="res://Assets/Sprites/Characters/playerTestSprite.png" id="1_cmar5"]
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_e3qtb"]
 [ext_resource type="PackedScene" uid="uid://c5w2f44wlbeyd" path="res://Scenes/Components/health_component.tscn" id="2_54ccj"]
 [ext_resource type="PackedScene" uid="uid://dufp4cjrdgk4t" path="res://Scenes/Components/movement_component.tscn" id="3_vwc2x"]
 [ext_resource type="Script" path="res://Scripts/Components/hitbox_component.gd" id="4_lx0ai"]
-[ext_resource type="PackedScene" uid="uid://c703gl1hq4m7n" path="res://Scenes/Components/input_component.tscn" id="6_1ifru"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/input_component.tscn" id="6_1ifru"]
 
 [sub_resource type="Animation" id="Animation_p8ybc"]
 length = 0.4
@@ -35,7 +35,7 @@ height = 20.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_86m0y"]
 height = 44.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_e3qtb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

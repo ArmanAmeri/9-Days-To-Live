@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://cs5k2n70joqal"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/enemy_test.gd" id="1_bd7i7"]
+[ext_resource type="Texture2D" uid="uid://7n6qnks6iptt" path="res://Assets/Sprites/Enemies/enemyplaceholder.png" id="1_iicjj"]
+[ext_resource type="PackedScene" uid="uid://dufp4cjrdgk4t" path="res://Scenes/Components/movement_component.tscn" id="3_sm3vc"]
+[ext_resource type="PackedScene" uid="uid://c5w2f44wlbeyd" path="res://Scenes/Components/health_component.tscn" id="4_f6jrb"]
+[ext_resource type="PackedScene" uid="uid://brrw37x1774kf" path="res://Scenes/Components/hitbox_component.tscn" id="5_lyqdk"]
+[ext_resource type="PackedScene" uid="uid://hrwh4688rui5" path="res://Scenes/Components/ai_component.tscn" id="6_ashcj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_agse5"]
+radius = 4.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrt4i"]
+size = Vector2(32, 15)
+
+[node name="EnemyTest" type="CharacterBody2D"]
+script = ExtResource("1_bd7i7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_iicjj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_agse5")
+
+[node name="MovementComponent" parent="." instance=ExtResource("3_sm3vc")]
+speed = 100.0
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_f6jrb")]
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_lyqdk")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_jrt4i")
+
+[node name="AIComponent" parent="." instance=ExtResource("6_ashcj")]
