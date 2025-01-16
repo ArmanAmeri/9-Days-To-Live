@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 @onready var movement_component = $MovementComponent
 @onready var input_component = $InputComponent
 
