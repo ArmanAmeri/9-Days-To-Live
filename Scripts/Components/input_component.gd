@@ -2,6 +2,9 @@ extends Node2D
 
 signal move_input(direction: Vector2)
 
+@onready var inventory: Node2D = $"../InventoryComponent"
+
+
 func _process(_delta: float) -> void:
 	var direction = Vector2.ZERO
 	if Input.is_action_pressed("ui_right"):
@@ -14,3 +17,8 @@ func _process(_delta: float) -> void:
 		direction.y -= 1
 
 	move_input.emit(direction)
+	
+	inventory.print_inventory()
+	
+	if Input.is_action_pressed("ui_select"):
+		inventory.add_item({ "name": "Health Potion", "amount": 2 })
