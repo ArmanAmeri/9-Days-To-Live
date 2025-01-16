@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://db3ov108qskk" path="res://Assets/Sprites/Items/PotionItemPlaceholder.png" id="2_i0fd1"]
 
 [node name="Potion" instance=ExtResource("1_5s4f2")]
+gravity_scale = 0.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="2"]
 texture_filter = 1

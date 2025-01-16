@@ -1,16 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://c61e5mj4hx8bu"]
+[gd_scene load_steps=5 format=3 uid="uid://c61e5mj4hx8bu"]
+
+[ext_resource type="Script" path="res://Scripts/Template Scripts/detection_area.gd" id="1_xeel2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xgbdx"]
 radius = 38.0132
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fmsan"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_igrkj"]
+font_size = 10
+
 [node name="ItemTemplate" type="RigidBody2D"]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="."]
+script = ExtResource("1_xeel2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_xgbdx")
 
 [node name="PhysicalShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_fmsan")
+
+[node name="PickUpItemLabel" type="Label" parent="."]
+visible = false
+offset_left = -31.0
+offset_top = 11.0
+offset_right = 30.0
+offset_bottom = 25.0
+text = "Pick Up Item"
+label_settings = SubResource("LabelSettings_igrkj")
+
+[connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="_on_body_exited"]
