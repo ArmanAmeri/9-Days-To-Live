@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c61e5mj4hx8bu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xgbdx"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fmsan"]
+
+[node name="ItemTemplate" type="RigidBody2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_xgbdx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fmsan")

@@ -25,6 +25,15 @@ window/stretch/mode="viewport"
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemy"
+2d_physics/layer_3="Ground"
+2d_physics/layer_4="Wall"
+2d_physics/layer_5="Item"
+2d_physics/layer_6="Projectile"
+
 [rendering]
 
 renderer/rendering_method="mobile"
