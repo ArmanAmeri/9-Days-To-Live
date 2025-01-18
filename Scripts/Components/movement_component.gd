@@ -1,12 +1,24 @@
 extends Node2D
 
-# Movement properties
-@export var speed: float = 200.0
+# Export variables for movement properties
+@export var speed: float = 100.0
+
+# Internal velocity vector
 var velocity: Vector2 = Vector2.ZERO
 
-func _process(delta):
-	if velocity.length() > 0:
-		position += velocity.normalized() * speed * delta
+# Reference to the parent CharacterBody2D
+@onready var character_body = get_parent() as CharacterBody2D
 
-func set_velocity(new_velocity: Vector2):
-	velocity = new_velocity
+func _physics_process(_delta: float) -> void:
+	if character_body:
+		if velocity != Vector2.ZERO:
+			character_body.velocity = velocity.normalized() * speed
+			character_body.move_and_slide()
+		else:
+			character_body.velocity = Vector2.ZERO
+	if not character_body:
+		return # Ensure this component is attached to a CharacterBody2D
+	
+
+func set_velocity(direction: Vector2) -> void:
+	velocity = direction
