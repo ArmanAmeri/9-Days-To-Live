@@ -20,4 +20,3 @@ position_smoothing_speed = 3.0
 position = Vector2(94, 104)
 
 [node name="healing_potion" parent="." instance=ExtResource("4_3ebb8")]
-position = Vector2(0, 57)

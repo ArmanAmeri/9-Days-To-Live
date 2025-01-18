@@ -1,18 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0uiwdllvjbi3"]
+[gd_scene load_steps=5 format=3 uid="uid://c0uiwdllvjbi3"]
 
 [ext_resource type="PackedScene" uid="uid://cehuipdasqya0" path="res://Scenes/Components/interaction_area.tscn" id="1_6rrak"]
 [ext_resource type="Script" path="res://Scripts/Template Scripts/item_template.gd" id="1_g6h42"]
-[ext_resource type="Texture2D" uid="uid://db3ov108qskk" path="res://Assets/Sprites/Items/PotionItemPlaceholder.png" id="2_8scn4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0tqvb"]
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tgnnp"]
-radius = 35.0143
+radius = 39.0
 
 [node name="Item_template" type="RigidBody2D"]
 collision_layer = 16
 gravity_scale = 0.0
+linear_damp = 2.0
+angular_damp = 3.0
 script = ExtResource("1_g6h42")
 
 [node name="PhysicalColl" type="CollisionShape2D" parent="."]
@@ -20,10 +21,9 @@ shape = SubResource("CircleShape2D_0tqvb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-1, 0)
-texture = ExtResource("2_8scn4")
 
 [node name="InteractionAreaComponent" parent="." instance=ExtResource("1_6rrak")]
+action_name = "Pick Up"
 
 [node name="AreaOfInteraction" type="CollisionShape2D" parent="InteractionAreaComponent"]
 shape = SubResource("CircleShape2D_tgnnp")
