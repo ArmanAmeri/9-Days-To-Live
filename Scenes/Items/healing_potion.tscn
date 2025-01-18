@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://byx86wqqokjtb"]
+
+[ext_resource type="PackedScene" uid="uid://c0uiwdllvjbi3" path="res://Scenes/Templates/item_template.tscn" id="1_mxfqa"]
+
+[node name="healing_potion" instance=ExtResource("1_mxfqa")]
+item_name = "healing_potion"
