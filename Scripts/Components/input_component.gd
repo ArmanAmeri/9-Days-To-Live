@@ -4,6 +4,7 @@ signal move_input(direction: Vector2)
 
 @onready var inventory: Node2D = $"../InventoryComponent"
 
+@onready var item_dropper_component: Node2D = $"../ItemDropperComponent"
 
 
 func _process(_delta: float) -> void:
@@ -19,3 +20,5 @@ func _process(_delta: float) -> void:
 
 	move_input.emit(direction)
 	
+	if Input.is_action_pressed("ui_select"):
+		item_dropper_component.drop_items()

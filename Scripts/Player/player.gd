@@ -14,17 +14,17 @@ func _on_move_input(direction: Vector2) -> void:
 func inventoryAction(action: String, itemName: String, amount: int):
 	var item
 	if action == "add_item":
-		item = itemLibrary.get_item_info(itemName)
+		item = itemLibrary.get_item_info(itemName, "none")
 		inventory.add_item(item)
 		inventory.print_inventory()
 	elif action == "remove_item":
-		item = itemLibrary.get_item_info(itemName)
+		item = itemLibrary.get_item_info(itemName, "none")
 		inventory.remove_item(item, amount)
 	elif action == "has_item":
-		item = itemLibrary.get_item_info(itemName)
+		item = itemLibrary.get_item_info(itemName, "none")
 		inventory.has_item(item)
 	elif action == "get_item_quantity":
-		item = itemLibrary.get_item_info(itemName)
+		item = itemLibrary.get_item_info(itemName, "none")
 		inventory.get_item_quantity(item)
 	elif action == "clear_inventory":
 		inventory.clear_inventory()

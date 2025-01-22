@@ -3,6 +3,9 @@ extends Node2D
 
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var label = $Label
+@onready var description: Label = $Description
+
+
 
 const base_text = "[F] to "
 
@@ -25,11 +28,18 @@ func _process(_delta: float) -> void:
 		active_areas.sort_custom(_sort_by_distance_to_player)
 		label.text = base_text + active_areas[0].action_name
 		label.global_position = active_areas[0].global_position
-		label.global_position.y -= 36
+		label.global_position.y -= 66
 		label.global_position.x -= label.size.x / 2
 		label.show()
+		
+		description.text = active_areas[0].description
+		description.global_position = active_areas[0].global_position
+		description.global_position.y -= 45
+		description.global_position.x -= description.size.x / 2
+		description.show()
 	else:
 		label.hide()
+		description.hide()
 
 
 func _sort_by_distance_to_player(area1, area2):

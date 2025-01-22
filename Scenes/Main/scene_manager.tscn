@@ -19,4 +19,7 @@ position_smoothing_speed = 3.0
 [node name="EnemyTest" parent="." instance=ExtResource("3_qcage")]
 position = Vector2(94, 104)
 
-[node name="healing_potion" parent="." instance=ExtResource("4_3ebb8")]
+[node name="healing_potion2" parent="." instance=ExtResource("4_3ebb8")]
+position = Vector2(105, -1)
+
+[node name="ItemsOnGround" type="Node2D" parent="."]

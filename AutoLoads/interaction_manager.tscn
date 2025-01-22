@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ui2qr2ld0dy7"]
+[gd_scene load_steps=4 format=3 uid="uid://ui2qr2ld0dy7"]
 
 [ext_resource type="FontFile" uid="uid://b88nrnqcnj1jh" path="res://Assets/Fonts/alagard.ttf" id="1_btcds"]
 [ext_resource type="Script" path="res://AutoLoads/interaction_manager.gd" id="1_k6f4f"]
+[ext_resource type="FontFile" uid="uid://ci2ovkpf32xxr" path="res://Assets/Fonts/m5x7.ttf" id="3_opine"]
 
 [node name="InteractionManager" type="Node2D"]
 script = ExtResource("1_k6f4f")
@@ -17,6 +18,21 @@ offset_right = 65.0
 offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_btcds")
-text = "[F]  TO INTERACT"
+text = "[F] TO INTERACT"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Description" type="Label" parent="."]
+z_index = 20
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 30.0
+offset_right = 50.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_opine")
+text = "hello this is a test hello"
+autowrap_mode = 3
