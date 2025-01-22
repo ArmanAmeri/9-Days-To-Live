@@ -1,7 +1,7 @@
 extends Node2D
 
 # Export variables for movement properties
-@export var speed: float = 200.0
+@export var speed: float = 100.0
 
 # Internal velocity vector
 var velocity: Vector2 = Vector2.ZERO

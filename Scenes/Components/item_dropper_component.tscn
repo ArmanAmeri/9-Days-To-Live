@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3sdl7hy2hycs"]
+
+[ext_resource type="Script" path="res://Scripts/Components/item_dropper_component.gd" id="1_ogldr"]
+
+[node name="ItemDropperComponent" type="Node2D"]
+script = ExtResource("1_ogldr")

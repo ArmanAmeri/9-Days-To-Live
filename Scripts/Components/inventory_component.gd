@@ -1,20 +1,44 @@
 extends Node2D
 
+class_name inventorycomponent
+
 # Signals
 signal inventory_updated(item_list)
 
 # Inventory settings
 @export var max_slots: int = 20  # Maximum number of slots in the inventory
+@export var max_stack_size: int = 99
+
 var inventory: Array = []  # Array to hold items (can be strings, dictionaries, or objects)
 
-# Adds an item to the inventory
+
 func add_item(item: Dictionary) -> bool:
-	"""
-	Add an item to the inventory. Returns true if successful, false if inventory is full.
-	"""
-	inventory.append(item)
-	inventory_updated.emit(inventory)
-	return true
+	print(inventory) # Debugging output
+	for i in range(inventory.size()): # Iterate using an index
+		var existing_item = inventory[i] # Access the dictionary
+		if existing_item["ID"] == item["ID"] and item["stackable"]:
+			# Check if we can fully stack the new item's amount
+			var combined_amount = existing_item["amount"] + item["amount"]
+			if combined_amount <= max_stack_size:
+				inventory[i]["amount"] = combined_amount # Modify the dictionary directly
+				inventory_updated.emit(inventory)
+				return true
+			else:
+				# Calculate remaining space in the stack
+				var remaining_space = max_stack_size - existing_item["amount"]
+				if remaining_space > 0:
+					inventory[i]["amount"] += remaining_space # Add to the existing stack
+					item["amount"] -= remaining_space # Reduce the new item's amount
+	# If there's still some of the item left, try adding it as a new stack
+	if inventory.size() < max_slots and item["amount"] > 0:
+		inventory.append(item.duplicate()) # Use .duplicate() to avoid modifying the original dictionary
+		inventory_updated.emit(inventory)
+		return true
+	return false
+
+
+
+
 
 # Removes an item from the inventory
 func remove_item(item_name: String, amount: int = 1) -> bool:

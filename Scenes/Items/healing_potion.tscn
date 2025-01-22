@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://byx86wqqokjtb"]
+
+[ext_resource type="PackedScene" uid="uid://c0uiwdllvjbi3" path="res://Scenes/Templates/item_template.tscn" id="1_mxfqa"]
+[ext_resource type="Texture2D" uid="uid://db3ov108qskk" path="res://Assets/Sprites/Items/PotionItemPlaceholder.png" id="2_odqs4"]
+
+[node name="healing_potion" instance=ExtResource("1_mxfqa")]
+item_name = "healing_potion"
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_odqs4")

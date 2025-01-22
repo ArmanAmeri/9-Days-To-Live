@@ -1,9 +1,7 @@
 extends Node2D
 
-var player
+@onready var player = get_tree().get_first_node_in_group("player")
 
-func _ready():
-	player = get_tree().get_first_node_in_group("player")
 
 signal move_input(direction: Vector2)
 
