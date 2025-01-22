@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://u4287d4s2fd2"]
+
+[ext_resource type="Script" path="res://Scripts/Components/temp_attack.gd" id="1_nvf8i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d470w"]
+radius = 70.0
+
+[node name="tempAttack" type="Area2D" node_paths=PackedStringArray("attack")]
+script = ExtResource("1_nvf8i")
+attack = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d470w")
