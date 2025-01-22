@@ -6,8 +6,12 @@
 radius = 70.0
 
 [node name="tempAttack" type="Area2D" node_paths=PackedStringArray("attack")]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_nvf8i")
 attack = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_d470w")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

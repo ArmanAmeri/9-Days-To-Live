@@ -8,3 +8,7 @@ func _process(_delta: float) -> void:
 		attack.disabled = false
 	else:
 		attack.disabled = true
+
+
+func _on_body_entered(body: Node2D) -> void:
+	body.damage()
