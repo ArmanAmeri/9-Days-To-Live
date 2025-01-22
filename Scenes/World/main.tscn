@@ -16,9 +16,6 @@ sources/1 = SubResource("TileSetAtlasSource_be7j6")
 texture = ExtResource("2_dg3lt")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
-1:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_lileo"]
 tile_size = Vector2i(32, 32)
