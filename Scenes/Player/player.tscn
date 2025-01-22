@@ -46,7 +46,7 @@ min_amount = 1
 max_amount = 10
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_mask = 0
+collision_mask = 58
 script = ExtResource("1_e3qtb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

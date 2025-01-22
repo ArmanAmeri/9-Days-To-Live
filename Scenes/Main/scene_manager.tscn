@@ -17,7 +17,8 @@ position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 
 [node name="EnemyTest" parent="." instance=ExtResource("3_qcage")]
-position = Vector2(94, 104)
+position = Vector2(-92, -30)
+scale = Vector2(1.01253, 1)
 
 [node name="healing_potion2" parent="." instance=ExtResource("4_3ebb8")]
 position = Vector2(105, -1)
