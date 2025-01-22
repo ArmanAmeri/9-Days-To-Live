@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cj04ihm2v23py"]
-
-[ext_resource type="Script" path="res://Scripts/Components/temp_attack_component.gd" id="1_87inm"]
-
-[node name="tempAttackComponent" type="Area2D"]
-script = ExtResource("1_87inm")
