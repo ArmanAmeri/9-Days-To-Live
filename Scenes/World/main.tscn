@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=4 uid="uid://bib3plfdoib4"]
+[gd_scene load_steps=7 format=4 uid="uid://bib3plfdoib4"]
 
 [ext_resource type="Texture2D" uid="uid://cnh1owatecjwf" path="res://Assets/Sprites/Tilesets/PlaceholderBlock.png" id="1_6uknj"]
+[ext_resource type="Texture2D" uid="uid://bno7esqlj7i3i" path="res://Assets/Sprites/Tilesets/PlaceholderWall.png" id="2_dg3lt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_be7j6"]
 texture = ExtResource("1_6uknj")
@@ -11,9 +12,28 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/1 = SubResource("TileSetAtlasSource_be7j6")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fk7t5"]
+texture = ExtResource("2_dg3lt")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_lileo"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 8
+physics_layer_0/collision_mask = 51
+sources/0 = SubResource("TileSetAtlasSource_fk7t5")
+
 [node name="Main" type="Node2D"]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="Ground" type="TileMapLayer" parent="."]
 texture_filter = 1
 tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAD//wEAAQAAAAAAAAD//wIAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAP//AQAAAAAAAAABAP//AQAAAAAAAAABAP7/AQAAAAAAAAAAAP7/AQAAAAAAAAD/////AQAAAAAAAAD//wAAAQAAAAAAAAABAAAAAQAAAAAAAAD+////AQAAAAAAAAD+/wAAAQAAAAAAAAD+/wEAAQAAAAAAAAD+/wIAAQAAAAAAAAD+/wMAAQAAAAAAAAABAAEAAQAAAAAAAAD9/wAAAQAAAAAAAAD9/wEAAQAAAAAAAAD9/wIAAQAAAAAAAAD///7/AQAAAAAAAAD+//7/AQAAAAAAAAAAAAIAAQAAAAAAAAABAAIAAQAAAAAAAAACAAIAAQAAAAAAAAACAAEAAQAAAAAAAAAAAAMAAQAAAAAAAAD//wMAAQAAAAAAAAD9/wMAAQAAAAAAAAD8/wMAAQAAAAAAAAD8/wIAAQAAAAAAAAD8/wEAAQAAAAAAAAD8/wAAAQAAAAAAAAD9////AQAAAAAAAAD9//7/AQAAAAAAAAD8////AQAAAAAAAAD8//7/AQAAAAAAAAABAAMAAQAAAAAAAAACAAMAAQAAAAAAAAADAAIAAQAAAAAAAAADAAEAAQAAAAAAAAACAAAAAQAAAAAAAAACAP//AQAAAAAAAAACAP7/AQAAAAAAAAA=")
 tile_set = SubResource("TileSet_gysox")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAP//AAAAAAAAAAAAAP7/AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAD+/wEAAAAAAAAAAAD9/wEAAAAAAAAAAAD8/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_lileo")
