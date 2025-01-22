@@ -39,3 +39,5 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_jrt4i")
 
 [node name="AIComponent" parent="." instance=ExtResource("6_ashcj")]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
