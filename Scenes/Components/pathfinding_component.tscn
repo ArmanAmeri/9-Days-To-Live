@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyasu10ogqoo3"]
+
+[ext_resource type="Script" path="res://Scripts/Components/pathfinding_component.gd" id="1_737h6"]
+
+[node name="PathfindingComponent" type="Node2D"]
+script = ExtResource("1_737h6")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true

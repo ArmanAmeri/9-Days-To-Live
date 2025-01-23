@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://dufp4cjrdgk4t" path="res://Scenes/Components/movement_component.tscn" id="3_sm3vc"]
 [ext_resource type="PackedScene" uid="uid://c5w2f44wlbeyd" path="res://Scenes/Components/health_component.tscn" id="4_f6jrb"]
 [ext_resource type="PackedScene" uid="uid://brrw37x1774kf" path="res://Scenes/Components/hitbox_component.tscn" id="5_lyqdk"]
-[ext_resource type="PackedScene" uid="uid://c10lwrjrsd4lv" path="res://Scenes/Components/ai_component.tscn" id="6_ashcj"]
+[ext_resource type="PackedScene" uid="uid://cyasu10ogqoo3" path="res://Scenes/Components/pathfinding_component.tscn" id="6_tu5bt"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_agse5"]
-radius = 4.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_mvtoo"]
+radius = 7.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jrt4i"]
 size = Vector2(32, 15)
@@ -25,7 +25,7 @@ texture = ExtResource("1_iicjj")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_agse5")
+shape = SubResource("CircleShape2D_mvtoo")
 
 [node name="MovementComponent" parent="." instance=ExtResource("3_sm3vc")]
 
@@ -38,6 +38,4 @@ health_component = NodePath("../HealthComponent")
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_jrt4i")
 
-[node name="AIComponent" parent="." instance=ExtResource("6_ashcj")]
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="PathfindingComponent" parent="." instance=ExtResource("6_tu5bt")]
