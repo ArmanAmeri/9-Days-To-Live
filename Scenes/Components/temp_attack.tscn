@@ -13,5 +13,6 @@ attack = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_d470w")
+debug_color = Color(0.776477, 0.439997, 1.92523e-07, 0.42)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -51,7 +51,6 @@ collision_mask = 42
 script = ExtResource("1_e3qtb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
 texture = ExtResource("1_cmar5")
 hframes = 2
 metadata/_aseprite_wizard_interface_config_ = {
@@ -94,6 +93,7 @@ speed = 120.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CapsuleShape2D_cmhyr")
+debug_color = Color(0.984314, 0, 0, 0.419608)
 
 [node name="InputComponent" parent="." instance=ExtResource("6_1ifru")]
 
