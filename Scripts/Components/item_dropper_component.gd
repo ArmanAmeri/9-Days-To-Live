@@ -18,6 +18,7 @@ func drop_items() -> void:
 			var drop_item_path = load(itemLibrary.get_item_info(drop_name, "scene_path"))
 			var drop = drop_item_path.instantiate()
 			get_node("/root/SceneManager/ItemsOnGround").add_child(drop)
-			drop.global_position = get_parent().global_position + Vector2(randf() * 16, randf() * 16)
+			drop.global_position = get_parent().global_position
+			drop.velocity = Vector2(randf_range(-100,100), randf_range(-100,100)).rotated(randf_range(-1.5, 1.5)) * randf_range(1.8, 2)
 			
 	pass

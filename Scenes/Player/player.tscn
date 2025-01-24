@@ -44,10 +44,10 @@ script = ExtResource("9_4x7ob")
 item_ID = "healing_potion"
 probability = 100.0
 min_amount = 1
-max_amount = 10
+max_amount = 1
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_mask = 58
+collision_mask = 42
 script = ExtResource("1_e3qtb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
