@@ -15,7 +15,7 @@ func enemy_setup():
 
 
 func _physics_process(_delta: float) -> void:
-	enemy_setup()
+	enemy_setup()	
 	
 	if navigation_agent.is_navigation_finished():
 		return
