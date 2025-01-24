@@ -3,7 +3,7 @@ extends Area2D
 class_name InteractionAreaComponent
 
 @export var action_name: String = "interact"
-@export var parent: RigidBody2D
+@export var parent: CharacterBody2D
 
 
 @onready var item_name : String = parent.item_name
