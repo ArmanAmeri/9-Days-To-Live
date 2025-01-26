@@ -8,6 +8,3 @@ item_name = "healing_potion"
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_odqs4")
-
-[node name="InteractionAreaComponent" parent="." index="2" node_paths=PackedStringArray("parent")]
-parent = NodePath("..")
