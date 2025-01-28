@@ -1,0 +1,114 @@
+[gd_scene load_steps=12 format=3 uid="uid://coceamwy3pynb"]
+
+[ext_resource type="Script" path="res://Scripts/Interactable Objects/test_chest.gd" id="1_f6l5m"]
+[ext_resource type="Texture2D" uid="uid://k5e5jrgb3cfr" path="res://Assets/Sprites/Interactables/placeholderchest.png" id="1_s07jr"]
+[ext_resource type="PackedScene" uid="uid://c3sdl7hy2hycs" path="res://Scenes/Components/item_dropper_component.tscn" id="2_uo6iy"]
+[ext_resource type="Script" path="res://Data/drop_data.gd" id="3_8mnwd"]
+[ext_resource type="PackedScene" uid="uid://cehuipdasqya0" path="res://Scenes/Components/interaction_area.tscn" id="4_e1fv2"]
+
+[sub_resource type="Animation" id="Animation_87wx4"]
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_thd8h"]
+resource_name = "open"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(-0.5, -0.5, -0.5, -0.5),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_v77j5"]
+resource_name = "close"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(-0.5, -0.5, -0.5, -0.5),
+"update": 1,
+"values": [3, 2, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7p56s"]
+_data = {
+"close": SubResource("Animation_v77j5"),
+"default": SubResource("Animation_87wx4"),
+"open": SubResource("Animation_thd8h")
+}
+
+[sub_resource type="Resource" id="Resource_4q01m"]
+script = ExtResource("3_8mnwd")
+item_ID = "healing_potion"
+probability = 100.0
+min_amount = 1
+max_amount = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uepxp"]
+size = Vector2(60, 60)
+
+[node name="TestChest" type="Node2D"]
+script = ExtResource("1_f6l5m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_s07jr")
+hframes = 2
+vframes = 2
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"output_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "res://Assets/Sprites/Interactables",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://Assets/Aseprite/placeholderchest.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "52386479fc0d34299c1ffdb89c614a5a"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7p56s")
+}
+
+[node name="ItemDropperComponent" parent="." instance=ExtResource("2_uo6iy")]
+drops = Array[ExtResource("3_8mnwd")]([SubResource("Resource_4q01m")])
+
+[node name="InteractionAreaComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("4_e1fv2")]
+action_name = "Open"
+parent = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionAreaComponent"]
+shape = SubResource("RectangleShape2D_uepxp")
