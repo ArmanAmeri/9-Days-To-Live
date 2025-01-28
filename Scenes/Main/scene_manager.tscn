@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bib3plfdoib4" path="res://Scenes/World/main.tscn" id="1_yg0ss"]
 [ext_resource type="PackedScene" uid="uid://wv3abl31ronq" path="res://Scenes/Player/player.tscn" id="2_o34v0"]
-[ext_resource type="PackedScene" uid="uid://cxmcavikto6jw" path="res://Scenes/Enemies/enemy_test.tscn" id="3_qcage"]
+[ext_resource type="PackedScene" uid="uid://badsnu5m75c2d" path="res://Scenes/Enemies/enemy_test.tscn" id="3_qcage"]
 
 [node name="SceneManager" type="Node"]
 
