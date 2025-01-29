@@ -5,38 +5,57 @@ extends Node2D
 @onready var ray_cast: RayCast2D = $RayCast2D
 @onready var recalculation_timer: Timer = $RecalculationTimer
 
-var player_visible: bool = true
-var last_seen_position: Vector2
+var player_visible: bool = false
+var last_seen_position: Vector2 = Vector2.ZERO  # Last known player position
+var stopping_distance: float = 5.0  # Distance threshold to stop at the target
+var reached_last_position: bool = true  # Whether the enemy reached the last seen position
 
 signal move_input(direction: Vector2)
 
 func _ready() -> void:
 	recalculation_timer.start()
 
-
 func _physics_process(_delta: float) -> void:
+	# RayCast2D always looks at the player
 	ray_cast.look_at(player.global_position)
-	if nav_agent.is_navigation_finished():
+
+	# Check player visibility with RayCast2D
+	player_visible = is_player_visible()
+
+	# Stop moving if the enemy has reached the last known position
+	if nav_agent.is_navigation_finished() and is_at_target():
+		reached_last_position = true
 		return
-	var direction = to_local(nav_agent.get_next_path_position()).normalized()
+
+	# Handle movement if not at the target
+	if not reached_last_position:
+		var direction = to_local(nav_agent.get_next_path_position()).normalized()
+		move_input.emit(direction)
+	else: move_input.emit(Vector2(0, 0))
+
+# RayCast2D visibility logic
+func is_player_visible() -> bool:
 	if ray_cast.is_colliding():
-		if ray_cast.get_collider() is Player or ray_cast.get_collider() is HitboxComponent:
-			player_visible = true
-			last_seen_position = player.global_position
-			move_input.emit(direction)
-		else:
-			player_visible = false
+		var collider = ray_cast.get_collider()
+		return collider is Player or collider is HitboxComponent
+	return false
 
-			
-
-func recalculate_path():
+# Recalculate path based on visibility
+func recalculate_path() -> void:
 	if player_visible and player:
-		# If the player is visible, set the target position to the player's current position
+		# If player is visible, set the target position to the player's current position
 		nav_agent.target_position = player.global_position
-	elif not player_visible:
-		# If the player is not visible, navigate to the last seen position
+		last_seen_position = player.global_position
+		reached_last_position = false
+	elif not player_visible and not reached_last_position:
+		# If player is not visible, navigate to the last known position
 		nav_agent.target_position = last_seen_position
 
-#Timer for performance	
+# Timer for performance optimization
 func _on_recalculation_timer_timeout() -> void:
-	recalculate_path()
+	if not is_at_target():  # Only recalculate if not at the target
+		recalculate_path()
+
+# Check if the enemy has reached its destination
+func is_at_target() -> bool:
+	return global_position.distance_to(nav_agent.target_position) <= stopping_distance
