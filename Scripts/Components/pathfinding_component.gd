@@ -1,28 +1,29 @@
 extends Node2D
 
 @onready var player = get_tree().get_first_node_in_group("player")
-@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var ray_cast: RayCast2D = $RayCast2D
+@onready var recalculation_timer: Timer = $RecalculationTimer
+
+var player_seen: bool = false
 
 signal move_input(direction: Vector2)
 
 func _ready() -> void:
-	call_deferred("enemy_setup")
-
-func enemy_setup():
-	await get_tree().physics_frame
-	if player:
-		ray_cast.look_at(player.global_position)
+	nav_agent.path_desired_distance = 4
+	nav_agent.target_desired_distance = 4
 
 func _physics_process(_delta: float) -> void:
-	var current_agent_position: Vector2
-	var next_path_position: Vector2
-	enemy_setup()
-	if ray_cast.is_colliding() and (ray_cast.get_collider() is HitboxComponent or ray_cast.get_collider() is Player):
-		if player:
-			navigation_agent.target_position = player.global_position
-		if navigation_agent.is_navigation_finished():
-			return
-		current_agent_position = global_position
-		next_path_position = navigation_agent.get_next_path_position()
-		move_input.emit(current_agent_position.direction_to(next_path_position))
+	if nav_agent.is_navigation_finished():
+		return
+	
+	var direction = to_local(nav_agent.get_next_path_position()).normalized()
+	move_input.emit(direction)
+
+func recalculate_path():
+	if player:
+		nav_agent.target_position = player.global_position
+
+#Timer for performance
+func _on_recalculation_timer_timeout() -> void:
+	recalculate_path()
