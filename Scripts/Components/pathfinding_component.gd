@@ -5,25 +5,38 @@ extends Node2D
 @onready var ray_cast: RayCast2D = $RayCast2D
 @onready var recalculation_timer: Timer = $RecalculationTimer
 
-var player_seen: bool = false
+var player_visible: bool = true
+var last_seen_position: Vector2
 
 signal move_input(direction: Vector2)
 
 func _ready() -> void:
-	nav_agent.path_desired_distance = 4
-	nav_agent.target_desired_distance = 4
+	recalculation_timer.start()
+
 
 func _physics_process(_delta: float) -> void:
+	ray_cast.look_at(player.global_position)
 	if nav_agent.is_navigation_finished():
 		return
-	
 	var direction = to_local(nav_agent.get_next_path_position()).normalized()
-	move_input.emit(direction)
+	if ray_cast.is_colliding():
+		if ray_cast.get_collider() is Player or ray_cast.get_collider() is HitboxComponent:
+			player_visible = true
+			last_seen_position = player.global_position
+			move_input.emit(direction)
+		else:
+			player_visible = false
+
+			
 
 func recalculate_path():
-	if player:
+	if player_visible and player:
+		# If the player is visible, set the target position to the player's current position
 		nav_agent.target_position = player.global_position
+	elif not player_visible:
+		# If the player is not visible, navigate to the last seen position
+		nav_agent.target_position = last_seen_position
 
-#Timer for performance
+#Timer for performance	
 func _on_recalculation_timer_timeout() -> void:
 	recalculate_path()
