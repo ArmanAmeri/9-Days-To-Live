@@ -2,9 +2,25 @@
 
 [ext_resource type="Script" path="res://Scripts/Interactable Objects/test_chest.gd" id="1_f6l5m"]
 [ext_resource type="Texture2D" uid="uid://k5e5jrgb3cfr" path="res://Assets/Sprites/Interactables/placeholderchest.png" id="1_s07jr"]
-[ext_resource type="PackedScene" uid="uid://c3sdl7hy2hycs" path="res://Scenes/Components/item_dropper_component.tscn" id="2_uo6iy"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/item_dropper_component.tscn" id="2_uo6iy"]
 [ext_resource type="Script" path="res://Data/drop_data.gd" id="3_8mnwd"]
-[ext_resource type="PackedScene" uid="uid://cehuipdasqya0" path="res://Scenes/Components/interaction_area.tscn" id="4_e1fv2"]
+[ext_resource type="PackedScene" uid="uid://bhs4uvvgxs5b0" path="res://Scenes/Components/interaction_area.tscn" id="4_e1fv2"]
+
+[sub_resource type="Animation" id="Animation_v77j5"]
+resource_name = "close"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(-0.5, -0.5, -0.5, -0.5),
+"update": 1,
+"values": [3, 2, 1, 0]
+}
 
 [sub_resource type="Animation" id="Animation_87wx4"]
 length = 0.4
@@ -36,22 +52,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(-0.5, -0.5, -0.5, -0.5),
 "update": 1,
 "values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_v77j5"]
-resource_name = "close"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(-0.5, -0.5, -0.5, -0.5),
-"update": 1,
-"values": [3, 2, 1, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7p56s"]
