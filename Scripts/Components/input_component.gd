@@ -4,8 +4,6 @@ signal move_input(direction: Vector2, dashing: bool)
 
 @onready var inventory: Node2D = $"../InventoryComponent"
 
-@onready var item_dropper_component: Node2D = $"../ItemDropperComponent"
-
 
 func _process(_delta: float) -> void:
 	var direction = Vector2.ZERO
