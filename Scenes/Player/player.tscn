@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://wv3abl31ronq"]
+[gd_scene load_steps=17 format=3 uid="uid://wv3abl31ronq"]
 
 [ext_resource type="Texture2D" uid="uid://1ach5mskwlu7" path="res://Assets/Sprites/Characters/playerTestSprite.png" id="1_cmar5"]
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_e3qtb"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/Components/item_dropper_component.tscn" id="8_cnc68"]
 [ext_resource type="Script" path="res://Data/drop_data.gd" id="9_4x7ob"]
 [ext_resource type="PackedScene" uid="uid://u4287d4s2fd2" path="res://Scenes/Components/temp_attack.tscn" id="10_crxcs"]
+[ext_resource type="Script" path="res://Scripts/Player/weapon_holder.gd" id="11_m24io"]
 
 [sub_resource type="Animation" id="Animation_p8ybc"]
 length = 0.4
@@ -86,14 +87,14 @@ shape = SubResource("CapsuleShape2D_lmh4r")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_54ccj")]
 
-[node name="MovementComponent" parent="." instance=ExtResource("3_vwc2x")]
-speed = 120.0
-
 [node name="HitboxComponent" parent="." instance=ExtResource("5_l6lgr")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CapsuleShape2D_cmhyr")
 debug_color = Color(0.984314, 0, 0, 0.419608)
+
+[node name="MovementComponent" parent="." instance=ExtResource("3_vwc2x")]
+speed = 120.0
 
 [node name="InputComponent" parent="." instance=ExtResource("6_1ifru")]
 
@@ -103,3 +104,6 @@ debug_color = Color(0.984314, 0, 0, 0.419608)
 drops = Array[ExtResource("9_4x7ob")]([SubResource("Resource_ie8nq")])
 
 [node name="tempAttack" parent="." instance=ExtResource("10_crxcs")]
+
+[node name="WeaponHolder" type="Node2D" parent="."]
+script = ExtResource("11_m24io")

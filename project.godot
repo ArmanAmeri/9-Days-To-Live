@@ -30,7 +30,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/FrameDataManager/plugin.cfg", "res://addons/FrameDataSystem/plugin.cfg", "res://addons/frame_data/plugin.cfg", "res://addons/frame_data_system/plugin.cfg", "res://addons/node_buttons/plugin.cfg")
 
 [input]
 
