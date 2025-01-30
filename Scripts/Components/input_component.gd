@@ -3,8 +3,7 @@ extends Node2D
 signal move_input(direction: Vector2, dashing: bool)
 
 @onready var inventory: Node2D = $"../InventoryComponent"
-
-@onready var item_dropper_component: Node2D = $"../ItemDropperComponent"
+@onready var dash_timer: Timer = $"../Timers/DashTimer"
 
 
 func _process(_delta: float) -> void:
@@ -19,7 +18,8 @@ func _process(_delta: float) -> void:
 	if Input.is_action_pressed("w"):
 		direction.y -= 1
 		
-	if Input.is_action_pressed("dash"):
+	if Input.is_action_just_pressed("dash"):
 		dashing = true
+
 	
 	move_input.emit(direction, dashing)

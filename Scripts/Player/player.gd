@@ -1,18 +1,31 @@
 extends CharacterBody2D
 
+class_name Player
+
 @onready var movement_component = $MovementComponent
 @onready var input_component = $InputComponent
 @onready var inventory = $InventoryComponent
+@onready var dash_timer: Timer = $Timers/DashTimer
+@onready var dash_cooldown: Timer = $Timers/DashCooldown
 
-var dash: bool = false
+
+var can_dash: bool = true
+var speed: float = 100
+var orgspeed: float = 100
 
 func _ready() -> void:
 	input_component.connect("move_input", _on_move_input)
+	dash_timer.connect("timeout", _dash_stop)
+	dash_cooldown.connect("timeout", _dash_cooldown)
 
 func _on_move_input(direction: Vector2, dashing: bool) -> void:
 	movement_component.set_velocity(direction)
-	dash = dashing
-	
+	if dashing and can_dash:
+		dash_timer.start()
+		speed += (speed/100)*300#%
+		can_dash = false
+		dash_cooldown.start()
+
 
 func inventoryAction(action: String, itemName: String, amount: int):
 	var item
@@ -34,3 +47,9 @@ func inventoryAction(action: String, itemName: String, amount: int):
 	else:
 		print("Invalid Inventory Action")
 		
+
+func _dash_stop() -> void:
+	speed = orgspeed
+
+func _dash_cooldown() -> void:
+	can_dash = true

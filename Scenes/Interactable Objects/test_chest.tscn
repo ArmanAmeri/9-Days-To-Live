@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Scripts/Interactable Objects/test_chest.gd" id="1_f6l5m"]
 [ext_resource type="Texture2D" uid="uid://k5e5jrgb3cfr" path="res://Assets/Sprites/Interactables/placeholderchest.png" id="1_s07jr"]
-[ext_resource type="PackedScene" path="res://Scenes/Components/item_dropper_component.tscn" id="2_uo6iy"]
+[ext_resource type="PackedScene" uid="uid://c3sdl7hy2hycs" path="res://Scenes/Components/item_dropper_component.tscn" id="2_uo6iy"]
 [ext_resource type="Script" path="res://Data/drop_data.gd" id="3_8mnwd"]
-[ext_resource type="PackedScene" uid="uid://bhs4uvvgxs5b0" path="res://Scenes/Components/interaction_area.tscn" id="4_e1fv2"]
+[ext_resource type="PackedScene" uid="uid://cehuipdasqya0" path="res://Scenes/Components/interaction_area.tscn" id="4_e1fv2"]
 
 [sub_resource type="Animation" id="Animation_v77j5"]
 resource_name = "close"
