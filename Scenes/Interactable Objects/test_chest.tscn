@@ -22,22 +22,6 @@ tracks/0/keys = {
 "values": [3, 2, 1, 0]
 }
 
-[sub_resource type="Animation" id="Animation_v77j5"]
-resource_name = "close"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(-0.5, -0.5, -0.5, -0.5),
-"update": 1,
-"values": [3, 2, 1, 0]
-}
-
 [sub_resource type="Animation" id="Animation_87wx4"]
 length = 0.4
 loop_mode = 1
@@ -95,6 +79,7 @@ texture_filter = 1
 texture = ExtResource("1_s07jr")
 hframes = 2
 vframes = 2
+frame = 3
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
 "output_section": true,

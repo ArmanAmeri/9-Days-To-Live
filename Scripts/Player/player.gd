@@ -6,6 +6,8 @@ class_name Player
 @onready var input_component = $InputComponent
 @onready var inventory = $InventoryComponent
 
+var speed = 100
+
 func _ready() -> void:
 	input_component.connect("move_input", _on_move_input)
 

@@ -9,4 +9,5 @@ func _process(_delta: float) -> void:
 		holding_type = child_node[0].type
 		print("Child variable value: ", holding_type)
 	else:
-		print("Child node not found!")
+		#print("Child node not found!")
+		pass

@@ -17,4 +17,6 @@ collide_with_areas = true
 [node name="RecalculationTimer" type="Timer" parent="."]
 wait_time = 0.25
 
+[node name="Area2D" type="Area2D" parent="."]
+
 [connection signal="timeout" from="RecalculationTimer" to="." method="_on_recalculation_timer_timeout"]

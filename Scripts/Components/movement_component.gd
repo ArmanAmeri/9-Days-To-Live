@@ -9,6 +9,9 @@ var velocity: Vector2 = Vector2.ZERO
 # Reference to the parent CharacterBody2D
 @onready var character_body = get_parent() as CharacterBody2D
 
+func _ready() -> void:
+	speed = character_body.speed
+
 func _physics_process(_delta: float) -> void:
 	if character_body:
 		if velocity != Vector2.ZERO:
