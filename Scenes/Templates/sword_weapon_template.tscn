@@ -53,7 +53,6 @@ texture_filter = 1
 texture = ExtResource("1_vc64i")
 hframes = 2
 vframes = 2
-frame = 3
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "pending_changes": {}

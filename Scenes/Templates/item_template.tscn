@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c0uiwdllvjbi3"]
 
-[ext_resource type="PackedScene" uid="uid://bhs4uvvgxs5b0" path="res://Scenes/Components/interaction_area.tscn" id="1_6rrak"]
+[ext_resource type="PackedScene" uid="uid://cehuipdasqya0" path="res://Scenes/Components/interaction_area.tscn" id="1_6rrak"]
 [ext_resource type="Script" path="res://Scripts/Template Scripts/item_template.gd" id="1_g6h42"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0tqvb"]
@@ -57,7 +57,8 @@ shape = SubResource("CircleShape2D_0tqvb")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 
-[node name="InteractionAreaComponent" parent="." instance=ExtResource("1_6rrak")]
+[node name="InteractionAreaComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("1_6rrak")]
+parent = NodePath("..")
 
 [node name="AreaOfInteraction" type="CollisionShape2D" parent="InteractionAreaComponent"]
 shape = SubResource("CircleShape2D_tgnnp")

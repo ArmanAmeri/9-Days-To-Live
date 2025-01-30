@@ -1,18 +1,17 @@
 extends CharacterBody2D
 
-class_name Player
-
 @onready var movement_component = $MovementComponent
 @onready var input_component = $InputComponent
 @onready var inventory = $InventoryComponent
 
-var speed = 100
+var dash: bool = false
 
 func _ready() -> void:
 	input_component.connect("move_input", _on_move_input)
 
-func _on_move_input(direction: Vector2) -> void:
+func _on_move_input(direction: Vector2, dashing: bool) -> void:
 	movement_component.set_velocity(direction)
+	dash = dashing
 	
 
 func inventoryAction(action: String, itemName: String, amount: int):
