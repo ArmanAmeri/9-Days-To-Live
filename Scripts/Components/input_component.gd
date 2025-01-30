@@ -1,6 +1,6 @@
 extends Node2D
 
-signal move_input(direction: Vector2)
+signal move_input(direction: Vector2, dashing: bool)
 
 @onready var inventory: Node2D = $"../InventoryComponent"
 
@@ -9,6 +9,7 @@ signal move_input(direction: Vector2)
 
 func _process(_delta: float) -> void:
 	var direction = Vector2.ZERO
+	var dashing: bool = false
 	if Input.is_action_pressed("d"):
 		direction.x += 1
 	if Input.is_action_pressed("a"):
@@ -17,8 +18,8 @@ func _process(_delta: float) -> void:
 		direction.y += 1
 	if Input.is_action_pressed("w"):
 		direction.y -= 1
-
-	move_input.emit(direction)
+		
+	if Input.is_action_pressed("dash"):
+		dashing = true
 	
-	if Input.is_action_pressed("ui_select"):
-		item_dropper_component.drop_items()
+	move_input.emit(direction, dashing)

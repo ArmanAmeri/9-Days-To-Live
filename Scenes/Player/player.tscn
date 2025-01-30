@@ -1,14 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://wv3abl31ronq"]
+[gd_scene load_steps=14 format=3 uid="uid://wv3abl31ronq"]
 
 [ext_resource type="Texture2D" uid="uid://1ach5mskwlu7" path="res://Assets/Sprites/Characters/playerTestSprite.png" id="1_cmar5"]
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_e3qtb"]
 [ext_resource type="PackedScene" uid="uid://c5w2f44wlbeyd" path="res://Scenes/Components/health_component.tscn" id="2_54ccj"]
 [ext_resource type="PackedScene" uid="uid://dufp4cjrdgk4t" path="res://Scenes/Components/movement_component.tscn" id="3_vwc2x"]
 [ext_resource type="PackedScene" uid="uid://brrw37x1774kf" path="res://Scenes/Components/hitbox_component.tscn" id="5_l6lgr"]
-[ext_resource type="PackedScene" path="res://Scenes/Components/input_component.tscn" id="6_1ifru"]
+[ext_resource type="PackedScene" uid="uid://c703gl1hq4m7n" path="res://Scenes/Components/input_component.tscn" id="6_1ifru"]
 [ext_resource type="PackedScene" uid="uid://b0anoxqhe5kra" path="res://Scenes/Components/inventory_component.tscn" id="7_5pc3l"]
-[ext_resource type="PackedScene" path="res://Scenes/Components/item_dropper_component.tscn" id="8_cnc68"]
-[ext_resource type="Script" path="res://Data/drop_data.gd" id="9_4x7ob"]
 [ext_resource type="PackedScene" uid="uid://u4287d4s2fd2" path="res://Scenes/Components/temp_attack.tscn" id="10_crxcs"]
 [ext_resource type="Script" path="res://Scripts/Player/weapon_holder.gd" id="11_m24io"]
 
@@ -39,13 +37,6 @@ height = 20.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cmhyr"]
 height = 48.0
-
-[sub_resource type="Resource" id="Resource_ie8nq"]
-script = ExtResource("9_4x7ob")
-item_ID = "healing_potion"
-probability = 100.0
-min_amount = 1
-max_amount = 1
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 42
@@ -99,9 +90,6 @@ speed = 120.0
 [node name="InputComponent" parent="." instance=ExtResource("6_1ifru")]
 
 [node name="InventoryComponent" parent="." instance=ExtResource("7_5pc3l")]
-
-[node name="ItemDropperComponent" parent="." instance=ExtResource("8_cnc68")]
-drops = Array[ExtResource("9_4x7ob")]([SubResource("Resource_ie8nq")])
 
 [node name="tempAttack" parent="." instance=ExtResource("10_crxcs")]
 
