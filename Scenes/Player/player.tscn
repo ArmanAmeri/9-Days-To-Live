@@ -88,6 +88,7 @@ shape = SubResource("CapsuleShape2D_lmh4r")
 [node name="HealthComponent" parent="." instance=ExtResource("2_54ccj")]
 
 [node name="HitboxComponent" parent="." instance=ExtResource("5_l6lgr")]
+collision_layer = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CapsuleShape2D_cmhyr")
