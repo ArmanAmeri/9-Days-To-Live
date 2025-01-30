@@ -31,7 +31,7 @@ func _physics_process(_delta: float) -> void:
 	if not reached_last_position:
 		var direction = to_local(nav_agent.get_next_path_position()).normalized()
 		move_input.emit(direction)
-	else: move_input.emit(Vector2(0, 0))
+	elif player_visible == false: move_input.emit(Vector2(0, 0))
 
 # RayCast2D visibility logic
 func is_player_visible() -> bool:
