@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://fu1ftusosykt"]
+
+[ext_resource type="Script" path="res://Scripts/Components/weapon_component_script/critical_hit_component.gd" id="1_7ue7m"]
+
+[node name="CriticalHitComponent" type="Node2D"]
+script = ExtResource("1_7ue7m")
