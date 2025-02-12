@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6a37yjrms4nu"]
+
+[ext_resource type="Script" path="res://Scripts/Components/weapon_component_script/charge_attack_component.gd" id="1_tf10s"]
+
+[node name="ChargeAttackComponent" type="Node2D"]
+script = ExtResource("1_tf10s")

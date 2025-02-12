@@ -1,0 +1,49 @@
+[gd_scene load_steps=11 format=3 uid="uid://bvc86m2anj1tu"]
+
+[ext_resource type="Script" path="res://Scripts/Components/weapon_component_script/weapon_base.gd" id="1_1dgno"]
+[ext_resource type="Script" path="res://Scripts/Components/weapon_component_script/attack_data.gd" id="3_3o84h"]
+[ext_resource type="Script" path="res://Scripts/Components/weapon_component_script/attack_handler.gd" id="3_turtl"]
+[ext_resource type="Script" path="res://Scripts/Components/weapon_component_script/durability_component.gd" id="4_47q3q"]
+[ext_resource type="Script" path="res://Scripts/Components/weapon_component_script/status_effect.gd" id="4_bev1g"]
+[ext_resource type="Script" path="res://Scripts/Components/weapon_component_script/melee_attack_component.gd" id="5_f05b1"]
+[ext_resource type="PackedScene" uid="uid://cl6jfk574nt37" path="res://Scenes/Components/weapon_component_scenes/attack_area.tscn" id="5_gybxo"]
+
+[sub_resource type="Resource" id="Resource_gpmls"]
+script = ExtResource("4_bev1g")
+effect_type = 1
+duration = 0.0
+tick_damage = 0.0
+tick_rate = 0.0
+potency = 0.0
+
+[sub_resource type="Resource" id="Resource_e0ewc"]
+script = ExtResource("3_3o84h")
+base_damage = 0.0
+damage_type = 0
+knockback_force = 0.0
+status_effects = Array[ExtResource("4_bev1g")]([SubResource("Resource_gpmls")])
+attack_speed = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfq2f"]
+size = Vector2(50, 20)
+
+[node name="IronSword" type="Node2D"]
+script = ExtResource("1_1dgno")
+attack_data = SubResource("Resource_e0ewc")
+
+[node name="AttackHandler" type="Node2D" parent="."]
+script = ExtResource("3_turtl")
+
+[node name="AttackArea" parent="." instance=ExtResource("5_gybxo")]
+
+[node name="@CollisionShape2D@199616" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(25, 0)
+shape = SubResource("RectangleShape2D_jfq2f")
+
+[node name="DurabilityComponent" type="Node2D" parent="."]
+script = ExtResource("4_47q3q")
+
+[node name="MeleeAttackComponent" type="Node2D" parent="."]
+script = ExtResource("5_f05b1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

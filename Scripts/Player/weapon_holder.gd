@@ -2,12 +2,18 @@ extends Node2D
 
 
 @onready var holding_type: String
+var current_weapon: Weapon
 
-func _process(_delta: float) -> void:
-	var child_node = get_children()
-	if child_node:
-		holding_type = child_node[0].type
-		print("Child variable value: ", holding_type)
-	else:
-		#print("Child node not found!")
-		pass
+func equip_weapon(weapon_scene: PackedScene) -> void:
+	if current_weapon:
+		current_weapon.queue_free()
+	
+	current_weapon = weapon_scene.instantiate() as Weapon
+	self.add_child(current_weapon)
+
+func attack() -> void:
+	if current_weapon:
+		current_weapon.attack()
+
+func get_current_weapon() -> Weapon:
+	return current_weapon
