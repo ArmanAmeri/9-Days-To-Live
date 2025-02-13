@@ -12,9 +12,6 @@ extends Node2D
 @onready var durability: DurabilityComponent = $DurabilityComponent
 
 
-func _ready() -> void:
-	$AttackArea.make_circle(30.0)  # For an AoE weapon
-
 func attack() -> void:
 	if attack_handler and durability.has_durability():
 		attack_handler.perform_attack()

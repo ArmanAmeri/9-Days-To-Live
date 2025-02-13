@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cl6jfk574nt37"]
+[gd_scene load_steps=2 format=3 uid="uid://cm6f4yitb14gm"]
 
 [ext_resource type="Script" path="res://Scripts/Components/weapon_component_script/attack_area.gd" id="1_2a3sh"]
 
