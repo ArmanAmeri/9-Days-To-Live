@@ -24,7 +24,7 @@ knockback_force = 0.0
 status_effects = Array[ExtResource("4_bev1g")]([SubResource("Resource_gpmls")])
 attack_speed = 0.0
 
-[sub_resource type="Animation" id="Animation_6lewb"]
+[sub_resource type="Animation" id="Animation_b1q3e"]
 resource_name = "test"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -48,7 +48,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(48, -12), Vector2(-48, -16), Vector2(-31, 25)]
+"values": [Vector2(-26, 22), Vector2(54, -16), Vector2(-44, -17)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -72,15 +72,16 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [10.0, 10.0, 10.0]
+"values": [10.0, 29.0172, 29.0172]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yp8jm"]
 _data = {
-"test": SubResource("Animation_6lewb")
+"test": SubResource("Animation_b1q3e")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l12c3"]
+radius = 29.0172
 
 [node name="IronSword" type="Node2D"]
 script = ExtResource("1_1dgno")
@@ -105,5 +106,5 @@ recording_animation = "test"
 current_time = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-31, 25)
+position = Vector2(-44, -17)
 shape = SubResource("CircleShape2D_l12c3")
