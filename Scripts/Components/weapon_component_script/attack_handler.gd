@@ -6,7 +6,7 @@ signal attack_performed(attack: AttackData)
 signal attack_finished
 
 @onready var attack_area: AttackArea = $"../AttackArea"
-@onready var attack_data: AttackData = get_parent().attack_data
+@onready var attack_data: AttackData = get_parent().attack_data if get_parent() is Weapon else null
 @onready var anim_player: AnimationPlayer = $"../AnimationPlayer"
 
 var can_attack: bool = true

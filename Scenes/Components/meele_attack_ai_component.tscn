@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c6sqhjo0wjn2a"]
 
-[ext_resource type="Script" path="res://Scenes/Components/meele_attack_ai_component.gd" id="1_bkvnv"]
+[ext_resource type="Script" path="res://Scripts/Components/meele_attack_ai_component.gd" id="1_bkvnv"]
 
 [node name="MeeleAttackAIComponent" type="Area2D"]
 script = ExtResource("1_bkvnv")
