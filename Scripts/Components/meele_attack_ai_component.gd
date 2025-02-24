@@ -4,8 +4,14 @@ signal meele_range_entered()
 signal meele_range_exited()
 
 
+func _ready() -> void:
+	body_entered.connect(_on_body_entered)
+
+#I dont know why this doesnt work rn
 func _on_body_entered(_body: Node2D) -> void:
+	print("Body entered")
 	meele_range_entered.emit()
 
 func _on_body_exited(_body: Node2D) -> void:
+	print("Body exited")
 	meele_range_exited.emit()
