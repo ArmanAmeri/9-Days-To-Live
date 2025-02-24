@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dcnkhhr6reabx"
+path="res://.godot/imported/EffectBackground.aseprite-bd5c10c6630c8ec3c8fc40992f8da07c.res"
+
+[deps]
+
+source_file="res://Assets/Aseprite/EffectBackground.aseprite"
+dest_files=["res://.godot/imported/EffectBackground.aseprite-bd5c10c6630c8ec3c8fc40992f8da07c.res"]
+
+[params]
+
