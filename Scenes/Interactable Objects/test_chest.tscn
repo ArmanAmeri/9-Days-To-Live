@@ -6,6 +6,13 @@
 [ext_resource type="Script" path="res://Data/drop_data.gd" id="3_8mnwd"]
 [ext_resource type="PackedScene" uid="uid://cehuipdasqya0" path="res://Scenes/Components/interaction_area.tscn" id="4_e1fv2"]
 
+[sub_resource type="Resource" id="Resource_urv5j"]
+script = ExtResource("3_8mnwd")
+item_ID = "low_xp"
+probability = 100.0
+min_amount = 10
+max_amount = 10
+
 [sub_resource type="Animation" id="Animation_v77j5"]
 resource_name = "close"
 length = 0.4
@@ -61,25 +68,18 @@ _data = {
 "open": SubResource("Animation_thd8h")
 }
 
-[sub_resource type="Resource" id="Resource_4q01m"]
-script = ExtResource("3_8mnwd")
-item_ID = "healing_potion"
-probability = 100.0
-min_amount = 1
-max_amount = 1
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uepxp"]
 size = Vector2(60, 60)
 
 [node name="TestChest" type="Node2D"]
 script = ExtResource("1_f6l5m")
+drops = Array[ExtResource("3_8mnwd")]([SubResource("Resource_urv5j")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_s07jr")
 hframes = 2
 vframes = 2
-frame = 3
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
 "output_section": true,
@@ -103,9 +103,9 @@ metadata/_aseprite_wizard_source_file_hash_ = "52386479fc0d34299c1ffdb89c614a5a"
 libraries = {
 "": SubResource("AnimationLibrary_7p56s")
 }
+autoplay = "default"
 
 [node name="ItemDropperComponent" parent="." instance=ExtResource("2_uo6iy")]
-drops = Array[ExtResource("3_8mnwd")]([SubResource("Resource_4q01m")])
 
 [node name="InteractionAreaComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("4_e1fv2")]
 action_name = "Open"

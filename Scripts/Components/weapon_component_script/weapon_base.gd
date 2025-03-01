@@ -3,7 +3,6 @@ class_name Weapon
 extends Node2D
 
 
-@export var detection_shape: CollisionShape2D
 @export var durability_max: float = 100.0
 @export var attack_data: AttackData
 

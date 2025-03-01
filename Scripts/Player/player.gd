@@ -36,7 +36,6 @@ func inventoryAction(action: String, itemName: String, amount: int):
 	if action == "add_item":
 		item = itemLibrary.get_item_info(itemName, "none")
 		inventory.add_item(item)
-		inventory.print_inventory()
 	elif action == "remove_item":
 		item = itemLibrary.get_item_info(itemName, "none")
 		inventory.remove_item(item, amount)
@@ -50,7 +49,8 @@ func inventoryAction(action: String, itemName: String, amount: int):
 		inventory.clear_inventory()
 	else:
 		print("Invalid Inventory Action")
-		
+	
+	inventory.print_inventory()
 
 func _dash_stop() -> void:
 	speed = orgspeed

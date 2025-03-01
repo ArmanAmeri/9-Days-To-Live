@@ -17,21 +17,36 @@ offset_left = -65.0
 offset_right = 65.0
 offset_bottom = 23.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0.920024, 1, 0.382342, 1)
 theme_override_fonts/font = ExtResource("1_btcds")
 text = "[F] TO INTERACT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="."]
-z_index = 20
-texture_filter = 1
+[node name="TextArea" type="ColorRect" parent="."]
+z_index = 11
+custom_minimum_size = Vector2(80, 30)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -50.0
-offset_top = 30.0
-offset_right = 50.0
-offset_bottom = 80.0
+offset_left = -40.0
+offset_top = 25.0
+offset_right = 40.0
+offset_bottom = 55.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 0.535)
+
+[node name="ItemName" type="Label" parent="TextArea"]
+z_index = 20
+texture_filter = 1
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_right = 40.0
+offset_bottom = 29.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("3_opine")
 text = "hello this is a test hello"

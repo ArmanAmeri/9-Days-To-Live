@@ -1,13 +1,31 @@
 [gd_scene load_steps=3 format=3 uid="uid://byx86wqqokjtb"]
 
 [ext_resource type="PackedScene" uid="uid://c0uiwdllvjbi3" path="res://Scenes/Templates/item_template.tscn" id="1_mxfqa"]
-[ext_resource type="Texture2D" uid="uid://db3ov108qskk" path="res://Assets/Sprites/Items/PotionItemPlaceholder.png" id="2_odqs4"]
+[ext_resource type="Texture2D" uid="uid://3uplrnxdry1b" path="res://Assets/Sprites/Items/Healing_Potion.png" id="3_ua4t8"]
 
 [node name="healing_potion" instance=ExtResource("1_mxfqa")]
 item_name = "healing_potion"
 
 [node name="Sprite2D" parent="." index="1"]
-texture = ExtResource("2_odqs4")
+texture = ExtResource("3_ua4t8")
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"output_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "res://Assets/Sprites/Items",
+"o_name": "Healing_Potion",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://Assets/Aseprite/Healing_Potion.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "f02df18506d68794bad3283e1328a13d"
 
 [node name="InteractionAreaComponent" parent="." index="2"]
 item = true

@@ -1,7 +1,7 @@
 extends Node2D
 
 @export_category("Item Drops")
-@export var drops : Array[DropData]
+@onready var drops : Array[DropData] = get_parent().drops
 
 
 func drop_items() -> void:
