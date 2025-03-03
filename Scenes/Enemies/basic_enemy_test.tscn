@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfxceg3s4ve50"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/enemy_ai_component.gd" id="1_cv80y"]
+[ext_resource type="Texture2D" uid="uid://7n6qnks6iptt" path="res://Assets/Sprites/Enemies/enemyplaceholder.png" id="2_4ojmr"]
+[ext_resource type="PackedScene" uid="uid://cm6f4yitb14gm" path="res://Scenes/Components/weapon_component_scenes/attack_area.tscn" id="5_fj8ga"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dstke"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4edhr"]
+radius = 50.01
+
+[node name="BasicEnemyTest" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 13
+
+[node name="EnemyAiComponent" type="Node2D" parent="."]
+script = ExtResource("1_cv80y")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="EnemyAiComponent"]
+
+[node name="RayCast2D" type="RayCast2D" parent="EnemyAiComponent"]
+target_position = Vector2(0, 100)
+
+[node name="RecalculationTimer" type="Timer" parent="EnemyAiComponent"]
+
+[node name="PursuitTimer" type="Timer" parent="EnemyAiComponent"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4ojmr")
+
+[node name="PhysicalColl" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_dstke")
+
+[node name="AttackArea" parent="." node_paths=PackedStringArray("anim_player") instance=ExtResource("5_fj8ga")]
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_4edhr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

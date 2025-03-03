@@ -101,7 +101,8 @@ libraries = {
 "": SubResource("AnimationLibrary_yp8jm")
 }
 
-[node name="AttackArea" parent="." instance=ExtResource("5_gybxo")]
+[node name="AttackArea" parent="." node_paths=PackedStringArray("anim_player") instance=ExtResource("5_gybxo")]
+anim_player = NodePath("../AnimationPlayer")
 recording_animation = "test"
 current_time = 0.3
 

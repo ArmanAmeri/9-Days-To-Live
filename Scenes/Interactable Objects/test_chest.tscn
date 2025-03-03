@@ -72,6 +72,7 @@ _data = {
 size = Vector2(60, 60)
 
 [node name="TestChest" type="Node2D"]
+z_index = -1
 script = ExtResource("1_f6l5m")
 drops = Array[ExtResource("3_8mnwd")]([SubResource("Resource_urv5j")])
 
