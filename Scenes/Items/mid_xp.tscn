@@ -43,9 +43,6 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "41b517c0c4f193fe7064030e2e85aa66"
 
-[node name="PhysicalColl" parent="." index="1"]
-debug_color = Color(0.909804, 0, 0.733333, 0.113725)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_xvttr")
