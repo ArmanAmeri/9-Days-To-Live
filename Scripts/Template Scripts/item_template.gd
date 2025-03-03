@@ -5,7 +5,9 @@ extends CharacterBody2D
 @export var velocity_loss: int = 4
 
 @onready var interaction_area: InteractionAreaComponent = $InteractionAreaComponent
-@onready var player = get_tree().get_first_node_in_group("player")
+@onready var player: Player = get_tree().get_first_node_in_group("player")
+
+@onready var show_outline: bool = false
 
 func _ready() -> void:
 	interaction_area.interact = Callable(self, "_on_interact")

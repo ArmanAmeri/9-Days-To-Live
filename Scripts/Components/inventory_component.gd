@@ -75,7 +75,7 @@ func get_item_quantity(item_name: String) -> int:
 	return 0
 
 func print_inventory():
-	print(inventory)
+	print("Inventory: ", inventory)
 
 # Clear the inventory
 func clear_inventory():

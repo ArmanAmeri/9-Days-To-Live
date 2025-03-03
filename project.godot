@@ -32,6 +32,10 @@ window/stretch/mode="viewport"
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
 
+[global_group]
+
+xp=""
+
 [input]
 
 interact={
@@ -78,6 +82,7 @@ dash={
 2d_physics/layer_4="Wall"
 2d_physics/layer_5="Item"
 2d_physics/layer_6="Projectile"
+2d_physics/layer_7="xp"
 
 [rendering]
 

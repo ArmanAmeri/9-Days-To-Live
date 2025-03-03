@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdfntcpxnc34f"]
+
+[ext_resource type="Script" path="res://Scripts/Components/leveling_component.gd" id="1_56qck"]
+
+[node name="LevelingComponent" type="Area2D"]
+script = ExtResource("1_56qck")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

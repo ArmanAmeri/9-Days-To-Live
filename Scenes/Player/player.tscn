@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://wv3abl31ronq"]
+[gd_scene load_steps=17 format=3 uid="uid://wv3abl31ronq"]
 
 [ext_resource type="Texture2D" uid="uid://1ach5mskwlu7" path="res://Assets/Sprites/Characters/playerTestSprite.png" id="1_cmar5"]
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_e3qtb"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/Components/input_component.tscn" id="6_1ifru"]
 [ext_resource type="PackedScene" uid="uid://b0anoxqhe5kra" path="res://Scenes/Components/inventory_component.tscn" id="7_5pc3l"]
 [ext_resource type="PackedScene" uid="uid://u4287d4s2fd2" path="res://Scenes/Components/temp_attack.tscn" id="10_crxcs"]
+[ext_resource type="PackedScene" uid="uid://cdfntcpxnc34f" path="res://Scenes/Components/leveling_component.tscn" id="10_dvgh5"]
 [ext_resource type="Script" path="res://Scripts/Player/weapon_holder.gd" id="11_m24io"]
 
 [sub_resource type="Animation" id="Animation_p8ybc"]
@@ -38,7 +39,13 @@ height = 20.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cmhyr"]
 height = 48.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jbuap"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nru2"]
+bg_color = Color(0.0298143, 0.623741, 1, 1)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+z_index = 1
 collision_mask = 40
 script = ExtResource("1_e3qtb")
 
@@ -105,3 +112,21 @@ wait_time = 0.738
 
 [node name="WeaponHolder" type="Node2D" parent="."]
 script = ExtResource("11_m24io")
+
+[node name="LevelingComponent" parent="." instance=ExtResource("10_dvgh5")]
+position = Vector2(0, 18)
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelingComponent"]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_jbuap")
+debug_color = Color(0, 0.644032, 0.288839, 0.42)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -84.0
+offset_top = -68.0
+offset_right = 84.0
+offset_bottom = -45.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_6nru2")
+text = "LEVEL 1, XP: 10, Next: "

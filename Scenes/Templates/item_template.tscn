@@ -1,13 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0uiwdllvjbi3"]
+[gd_scene load_steps=9 format=3 uid="uid://c0uiwdllvjbi3"]
 
 [ext_resource type="PackedScene" uid="uid://cehuipdasqya0" path="res://Scenes/Components/interaction_area.tscn" id="1_6rrak"]
 [ext_resource type="Script" path="res://Scripts/Template Scripts/item_template.gd" id="1_g6h42"]
+[ext_resource type="Script" path="res://Scripts/Items/item_sprite_2d.gd" id="2_wt2qi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0tqvb"]
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tgnnp"]
-radius = 39.0
+radius = 43.0
 
 [sub_resource type="Animation" id="Animation_yj7q5"]
 length = 0.001
@@ -56,8 +57,10 @@ shape = SubResource("CircleShape2D_0tqvb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+script = ExtResource("2_wt2qi")
 
 [node name="InteractionAreaComponent" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("1_6rrak")]
+action_name = "Pickup"
 parent = NodePath("..")
 
 [node name="AreaOfInteraction" type="CollisionShape2D" parent="InteractionAreaComponent"]

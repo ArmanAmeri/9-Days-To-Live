@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqrdplpnastlg"]
+
+[ext_resource type="Script" path="res://Scripts/Template Scripts/xp.gd" id="1_jdsgh"]
+[ext_resource type="PackedScene" uid="uid://bwe8cl0hg7jt4" path="res://Scenes/Components/to_player_gravity.tscn" id="3_a6jer"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hog2e"]
+radius = 5.09902
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jemw0"]
+radius = 50.0
+
+[node name="XP" type="CharacterBody2D" groups=["xp"]]
+collision_layer = 64
+collision_mask = 12
+script = ExtResource("1_jdsgh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+hframes = 2
+vframes = 2
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "res://Assets/Sprites/Items",
+"o_name": "low_xp",
+"only_visible": false,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://Assets/Aseprite/low_xp.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "381b1e702b295adc38740539e2a0ae55"
+
+[node name="PhysicalColl" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hog2e")
+debug_color = Color(0.909804, 0, 0.733333, 0.113725)
+
+[node name="ToPlayerGravity" parent="." instance=ExtResource("3_a6jer")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToPlayerGravity"]
+shape = SubResource("CircleShape2D_jemw0")
