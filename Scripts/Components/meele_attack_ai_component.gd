@@ -3,6 +3,9 @@ extends Area2D
 signal meele_range_entered()
 signal meele_range_exited()
 
+func _ready() -> void:
+	self.connect("body_entered", _on_body_entered)
+	self.connect("body_exited", _on_body_exited)
 
 func _on_body_entered(_body: Node2D) -> void:
 	meele_range_entered.emit()

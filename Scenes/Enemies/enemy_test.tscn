@@ -19,7 +19,7 @@ radius = 39.1152
 
 [node name="EnemyTest" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 40
+collision_mask = 41
 script = ExtResource("1_bd7i7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -37,6 +37,7 @@ speed = 50.0
 [node name="HealthComponent" parent="." instance=ExtResource("4_f6jrb")]
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_lyqdk")]
+collision_mask = 1
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
@@ -47,7 +48,6 @@ shape = SubResource("RectangleShape2D_jrt4i")
 
 [node name="MeeleAttackAIComponent" parent="." instance=ExtResource("7_nduma")]
 collision_layer = 0
-collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeeleAttackAIComponent"]
 shape = SubResource("CircleShape2D_ijj20")
@@ -55,4 +55,5 @@ shape = SubResource("CircleShape2D_ijj20")
 [node name="Timers" type="Node2D" parent="."]
 
 [node name="DashAttackCooldown" type="Timer" parent="Timers"]
-wait_time = 0.5
+
+[connection signal="timeout" from="Timers/DashAttackCooldown" to="." method="_on_dash_attack_cooldown_timeout"]

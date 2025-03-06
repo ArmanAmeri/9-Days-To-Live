@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://wv3abl31ronq"]
+[gd_scene load_steps=19 format=3 uid="uid://wv3abl31ronq"]
 
 [ext_resource type="Texture2D" uid="uid://1ach5mskwlu7" path="res://Assets/Sprites/Characters/playerTestSprite.png" id="1_cmar5"]
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_e3qtb"]
 [ext_resource type="PackedScene" uid="uid://c5w2f44wlbeyd" path="res://Scenes/Components/health_component.tscn" id="2_54ccj"]
+[ext_resource type="Script" path="res://Scripts/Player/guiding_arrow.gd" id="3_h5clb"]
 [ext_resource type="PackedScene" uid="uid://dufp4cjrdgk4t" path="res://Scenes/Components/movement_component.tscn" id="3_vwc2x"]
 [ext_resource type="PackedScene" uid="uid://brrw37x1774kf" path="res://Scenes/Components/hitbox_component.tscn" id="5_l6lgr"]
 [ext_resource type="PackedScene" uid="uid://c703gl1hq4m7n" path="res://Scenes/Components/input_component.tscn" id="6_1ifru"]
@@ -10,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://u4287d4s2fd2" path="res://Scenes/Components/temp_attack.tscn" id="10_crxcs"]
 [ext_resource type="PackedScene" uid="uid://cdfntcpxnc34f" path="res://Scenes/Components/leveling_component.tscn" id="10_dvgh5"]
 [ext_resource type="Script" path="res://Scripts/Player/weapon_holder.gd" id="11_m24io"]
+[ext_resource type="Texture2D" uid="uid://tdv3p68hn8ax" path="res://Assets/Sprites/Characters/GuidingArrow3.png" id="12_fbrtn"]
 
 [sub_resource type="Animation" id="Animation_p8ybc"]
 length = 0.4
@@ -46,7 +48,7 @@ bg_color = Color(0.0298143, 0.623741, 1, 1)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
-collision_mask = 40
+collision_mask = 42
 script = ExtResource("1_e3qtb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -130,3 +132,33 @@ offset_right = 84.0
 offset_bottom = -45.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_6nru2")
 text = "LEVEL 1, XP: 10, Next: "
+
+[node name="GuidingArrow" type="Node2D" parent="."]
+position = Vector2(0, 18)
+script = ExtResource("3_h5clb")
+
+[node name="GuidingArrowSprite" type="Sprite2D" parent="GuidingArrow"]
+z_index = -1
+texture_filter = 1
+texture = ExtResource("12_fbrtn")
+offset = Vector2(10, 0)
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "res://Assets/Sprites/Characters",
+"o_name": "GuidingArrow3",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://Assets/Aseprite/GuidingArrow3.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "3a1af134c038405dbd8ef425bf6c101d"
+
+[node name="Aim" type="Marker2D" parent="GuidingArrow"]
+position = Vector2(25, 0)
