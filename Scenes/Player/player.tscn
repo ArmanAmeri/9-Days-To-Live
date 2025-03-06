@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/Components/input_component.tscn" id="6_1ifru"]
 [ext_resource type="PackedScene" uid="uid://b0anoxqhe5kra" path="res://Scenes/Components/inventory_component.tscn" id="7_5pc3l"]
 [ext_resource type="PackedScene" uid="uid://u4287d4s2fd2" path="res://Scenes/Components/temp_attack.tscn" id="10_crxcs"]
-[ext_resource type="PackedScene" uid="uid://cdfntcpxnc34f" path="res://Scenes/Components/leveling_component.tscn" id="10_dvgh5"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/leveling_component.tscn" id="10_dvgh5"]
 [ext_resource type="Script" path="res://Scripts/Player/weapon_holder.gd" id="11_m24io"]
 
 [sub_resource type="Animation" id="Animation_p8ybc"]

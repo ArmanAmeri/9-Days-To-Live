@@ -1,4 +1,5 @@
 extends Node2D
+class_name PathfindingComponent
 
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
@@ -9,6 +10,16 @@ var player_visible: bool = false
 var last_seen_position: Vector2 = Vector2.ZERO  # Last known player position
 var stopping_distance: float = 5.0  # Distance threshold to stop at the target
 var reached_last_position: bool = true  # Whether the enemy reached the last seen position
+
+#Enemy State Variables
+enum enemy_state {
+	IDLE,
+	PATROLLING,
+	CHASING,
+	ATTACKING,
+	KITING
+}
+var enemy_current_state
 
 signal move_input(direction: Vector2)
 
