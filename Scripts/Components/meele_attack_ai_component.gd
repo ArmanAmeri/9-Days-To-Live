@@ -7,9 +7,6 @@ func _ready() -> void:
 	self.connect("body_entered", _on_body_entered)
 	self.connect("body_exited", _on_body_exited)
 
-func _ready() -> void:
-	body_entered.connect(_on_body_entered)
-
 #I dont know why this doesnt work rn
 func _on_body_entered(_body: Node2D) -> void:
 	print("Body entered")
