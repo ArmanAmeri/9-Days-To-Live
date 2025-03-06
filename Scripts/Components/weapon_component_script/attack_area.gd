@@ -4,7 +4,7 @@ class_name AttackArea
 
 # Changed from @onready to regular variable
 var collision_shape: CollisionShape2D
-@onready var anim_player: AnimationPlayer = $"../AnimationPlayer"
+@export var anim_player: AnimationPlayer
 @onready var attack_data: AttackData = get_parent().attack_data if get_parent() is Weapon else null
 
 # Editor recording controls
