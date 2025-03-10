@@ -17,7 +17,7 @@ func _process(_delta: float) -> void:
 	var direction: Vector2 = Vector2.ZERO
 	
 	if not freeForm:
-		sprite.visible = false
+		sprite.visible = true
 		if Input.is_action_pressed("ø"):
 			direction.y += 1
 		if Input.is_action_pressed("p"):
