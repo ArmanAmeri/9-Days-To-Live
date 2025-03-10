@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var guiding_arrow: Node2D = $"../GuidingArrow"
 @onready var coll: CollisionShape2D = $PhysicalBody
 
+
 var freeForm: bool = false
 var targetPos: Vector2
 var target_cursor_speed: float = 300.0  # Speed in pixels per second
@@ -15,25 +16,36 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	var direction: Vector2 = Vector2.ZERO
+	position = lastPos
 	
 	if not freeForm:
 		sprite.visible = false
 		if Input.is_action_pressed("ø"):
-			direction.y += 1
+			position = Vector2.ZERO
+			position.y = 25
+			lastPos = position
 		if Input.is_action_pressed("p"):
-			direction.y -= 1
+			position = Vector2.ZERO
+			position.y = -25
+			lastPos = position
 		if Input.is_action_pressed("l"):
-			direction.x -= 1
+			position = Vector2.ZERO
+			position.x = -25
+			lastPos = position
 		if Input.is_action_pressed("æ"):
-			direction.x += 1
+			position = Vector2.ZERO
+			position.x = 25
+			lastPos = position
 		
-		# Normalize the direction to ensure consistent speed in all directions
-		if direction != Vector2.ZERO:
-			direction = direction.normalized()
+		if Input.is_action_pressed("ø") and Input.is_action_pressed("æ"):
+			position = Vector2(25, 25)
+		if Input.is_action_pressed("ø") and Input.is_action_pressed("l"):
+			position = Vector2(-25, 25)
+		if Input.is_action_pressed("p") and Input.is_action_pressed("æ"):
+			position = Vector2(25, -25)
+		if Input.is_action_pressed("p") and Input.is_action_pressed("l"):
+			position = Vector2(-25, -25)
 		
-		# Update the position based on direction and speed
-		position += direction * target_cursor_speed * _delta
-		lastPos = position
 	else: 
 		if Input.is_action_pressed("p"):
 			direction.y -= 1
@@ -46,8 +58,8 @@ func _process(_delta: float) -> void:
 	
 	print("target: ", targetPos)
 	print("direction: ", direction)
-	print("last position: ", lastPos)
-	print("position: ", position)
+	print("last positon: ", lastPos)
+	print("positon: ", position)
 	targetPos = target.global_position
 	
 	# Set the velocity based on direction and speed
