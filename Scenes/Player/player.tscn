@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://wv3abl31ronq"]
+[gd_scene load_steps=22 format=3 uid="uid://wv3abl31ronq"]
 
 [ext_resource type="Texture2D" uid="uid://1ach5mskwlu7" path="res://Assets/Sprites/Characters/playerTestSprite.png" id="1_cmar5"]
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_e3qtb"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" path="res://Scenes/Components/leveling_component.tscn" id="10_dvgh5"]
 [ext_resource type="Script" path="res://Scripts/Player/weapon_holder.gd" id="11_m24io"]
 [ext_resource type="Texture2D" uid="uid://tdv3p68hn8ax" path="res://Assets/Sprites/Characters/GuidingArrow3.png" id="12_fbrtn"]
+[ext_resource type="Script" path="res://Scripts/Player/target_arrow.gd" id="13_k1h4w"]
+[ext_resource type="Texture2D" uid="uid://cpeh8uqw20egd" path="res://Assets/Sprites/Characters/TargetArrow.png" id="13_u61m6"]
 
 [sub_resource type="Animation" id="Animation_p8ybc"]
 length = 0.4
@@ -46,12 +48,15 @@ height = 48.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nru2"]
 bg_color = Color(0.0298143, 0.623741, 1, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pooj8"]
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 collision_mask = 42
 script = ExtResource("1_e3qtb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -17)
 texture = ExtResource("1_cmar5")
 hframes = 2
 metadata/_aseprite_wizard_interface_config_ = {
@@ -81,7 +86,6 @@ libraries = {
 }
 
 [node name="Feet" type="CollisionShape2D" parent="."]
-position = Vector2(0, 18)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_lmh4r")
 
@@ -92,6 +96,7 @@ collision_layer = 1
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, -16)
 shape = SubResource("CapsuleShape2D_cmhyr")
 debug_color = Color(0.984314, 0, 0, 0.419608)
 
@@ -111,12 +116,12 @@ wait_time = 0.738
 [node name="InventoryComponent" parent="." instance=ExtResource("7_5pc3l")]
 
 [node name="tempAttack" parent="." instance=ExtResource("10_crxcs")]
+visible = false
 
 [node name="WeaponHolder" type="Node2D" parent="."]
 script = ExtResource("11_m24io")
 
 [node name="LevelingComponent" parent="." instance=ExtResource("10_dvgh5")]
-position = Vector2(0, 18)
 collision_layer = 0
 collision_mask = 64
 
@@ -127,14 +132,13 @@ debug_color = Color(0, 0.644032, 0.288839, 0.42)
 
 [node name="Label" type="Label" parent="."]
 offset_left = -84.0
-offset_top = -68.0
+offset_top = -80.0
 offset_right = 84.0
-offset_bottom = -45.0
+offset_bottom = -57.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_6nru2")
 text = "LEVEL 1, XP: 10, Next: "
 
 [node name="GuidingArrow" type="Node2D" parent="."]
-position = Vector2(0, 18)
 script = ExtResource("3_h5clb")
 
 [node name="GuidingArrowSprite" type="Sprite2D" parent="GuidingArrow"]
@@ -162,3 +166,35 @@ metadata/_aseprite_wizard_source_file_hash_ = "3a1af134c038405dbd8ef425bf6c101d"
 
 [node name="Aim" type="Marker2D" parent="GuidingArrow"]
 position = Vector2(25, 0)
+
+[node name="TargetArrow" type="CharacterBody2D" parent="."]
+position = Vector2(80, 0)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("13_k1h4w")
+
+[node name="TargetArrowSprite" type="Sprite2D" parent="TargetArrow"]
+texture_filter = 1
+texture = ExtResource("13_u61m6")
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "res://Assets/Sprites/Characters",
+"o_name": "TargetArrow",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://Assets/Aseprite/TargetArrow.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "9005ce5b7802f1f4004a3c2b4499725c"
+
+[node name="Target" type="Marker2D" parent="TargetArrow"]
+
+[node name="PhysicalBody" type="CollisionShape2D" parent="TargetArrow"]
+shape = SubResource("CircleShape2D_pooj8")

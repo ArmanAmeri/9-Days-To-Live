@@ -2,17 +2,18 @@ extends Node2D
 
 var lookPos: Vector2
 @onready var aim: Marker2D = $Aim
+@onready var target_arrow: CharacterBody2D = $"../TargetArrow"
 
-var using_mouse: bool = true
+
+var using_mouse: bool = false
 
 func _process(_delta: float) -> void:
 	
 	if using_mouse:
 		lookPos = get_global_mouse_position()
 	else:
-		#lookPos = Inputinfo.lookDir
-		pass
-	
+		lookPos = target_arrow.targetPos
+
 	look_at(lookPos)
 	queue_redraw()
 

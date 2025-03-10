@@ -5,7 +5,11 @@ extends Node2D
 @onready var text_area: ColorRect = $TextArea
 @onready var item_name: Label = $TextArea/ItemName
 
-const base_text = "[F] to "
+var interaction_key: String = "f"
+
+
+func _ready() -> void:
+	Signalbus.connect("key_interact", on_interact)
 
 var active_areas = []
 var can_interact = true
@@ -26,6 +30,7 @@ func unregister_area(area: InteractionAreaComponent):
 		currently_highlighted = null
 
 func _process(_delta: float) -> void:
+	var base_text = "[" + interaction_key + "] to "
 	if active_areas.size() > 0 && can_interact:
 		active_areas.sort_custom(_sort_by_distance_to_player)
 		
@@ -81,8 +86,13 @@ func _sort_by_distance_to_player(area1, area2):
 	var area2_to_player = player.global_position.distance_to(area2.global_position)
 	return area1_to_player < area2_to_player
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") && can_interact:
+#func _input(event: InputEvent) -> void:
+	
+
+func on_interact(key) -> void:
+	interaction_key = key 
+	
+	if can_interact:
 		if active_areas.size() > 0: 
 			can_interact = false
 			label.hide()
