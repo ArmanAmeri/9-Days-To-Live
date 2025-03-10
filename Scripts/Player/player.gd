@@ -17,7 +17,6 @@ func _ready() -> void:
 	input_component.connect("move_input", _on_move_input)
 	dash_timer.connect("timeout", _dash_stop)
 	dash_cooldown.connect("timeout", _dash_cooldown)
-	dash_timer.connect("timeout", input_component._on_dash_timer_timeout)
 
 func _on_move_input(direction: Vector2, dashing: bool, dash_direction: Vector2) -> void:
 	if dashing and can_dash:
