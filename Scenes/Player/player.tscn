@@ -198,3 +198,13 @@ metadata/_aseprite_wizard_source_file_hash_ = "9005ce5b7802f1f4004a3c2b4499725c"
 
 [node name="PhysicalBody" type="CollisionShape2D" parent="TargetArrow"]
 shape = SubResource("CircleShape2D_pooj8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
