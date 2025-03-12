@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ce3nq010tdh7i"
+path="res://.godot/imported/CharacterPlayground.aseprite-79fb705816232e19bdb24982a65ab0bf.res"
+
+[deps]
+
+source_file="res://Assets/Aseprite/CharacterPlayground.aseprite"
+dest_files=["res://.godot/imported/CharacterPlayground.aseprite-79fb705816232e19bdb24982a65ab0bf.res"]
+
+[params]
+

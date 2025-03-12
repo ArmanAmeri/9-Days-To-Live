@@ -96,7 +96,7 @@ collision_layer = 1
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(0, -16)
+position = Vector2(0, -14)
 shape = SubResource("CapsuleShape2D_cmhyr")
 debug_color = Color(0.984314, 0, 0, 0.419608)
 
