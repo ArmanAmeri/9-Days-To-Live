@@ -18,7 +18,6 @@ func _ready() -> void:
 	coll.disabled = true
 
 func _process(_delta: float) -> void:
-	print(get_camera_boundaries())
 	var direction: Vector2 = Vector2.ZERO
 	if not freeForm:
 		position = lastPos
@@ -70,18 +69,3 @@ func _process(_delta: float) -> void:
 	
 	# Move the character
 	move_and_slide()
-
-func get_camera_boundaries():
-	var viewport_rect = get_viewport_rect()
-	var camera = get_viewport().get_camera_2d()
-	var camera_position = camera.global_position
-	# Calculate world boundaries
-	var top_left = camera.get_screen_to_global(Vector2.ZERO)
-	var bottom_right = camera.get_screen_to_global(viewport_rect.size)
-	print("Camera boundaries: ", top_left, " to ", bottom_right)
-	return {
-		"top": top_left.y,
-		"left": top_left.x,
-		"bottom": bottom_right.y,
-		"right": bottom_right.x
-	}
