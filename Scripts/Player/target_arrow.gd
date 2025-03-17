@@ -58,11 +58,11 @@ func _process(_delta: float) -> void:
 		if Input.is_action_pressed("l"):
 			direction.x += 1
 	
-	print("target: ", targetPos)
-	print("direction: ", direction)
-	print("last positon: ", lastPos)
-	print("positon: ", position)
-	targetPos = target.global_position
+	#print("target: ", targetPos)
+	#print("direction: ", direction)
+	#print("last positon: ", lastPos)
+	#print("positon: ", position)
+	#targetPos = target.global_position
 	
 	# Set the velocity based on direction and speed
 	velocity = direction.normalized() * target_cursor_speed
