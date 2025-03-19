@@ -56,12 +56,12 @@ shape = SubResource("CircleShape2D_ijj20")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("8_2su1d")
-initial_state = NodePath("Patrolling")
+initial_state = NodePath("Idle")
 
 [node name="Patrolling" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("9_4m5aa")
 enemy = NodePath("../..")
-max_distance_from_spawn = 300.0
+max_distance_from_spawn = 100.0
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("10_1vsje")

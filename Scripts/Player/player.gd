@@ -10,7 +10,7 @@ class_name Player
 
 
 var can_dash: bool = true
-var speed: float = 100
+var current_speed: float = 100
 var orgspeed: float = 100
 
 func _ready() -> void:
@@ -21,7 +21,7 @@ func _ready() -> void:
 func _on_move_input(direction: Vector2, dashing: bool, dash_direction: Vector2) -> void:
 	if dashing and can_dash:
 		dash_timer.start()
-		speed += (speed/100) * 400 #%
+		current_speed += (current_speed/100) * 400 #%
 		can_dash = false
 		dash_cooldown.start()
 	elif input_component.dashing:
@@ -52,7 +52,7 @@ func inventoryAction(action: String, itemName: String, amount: int):
 	inventory.print_inventory()
 
 func _dash_stop() -> void:
-	speed = orgspeed
+	current_speed = orgspeed
 
 func _dash_cooldown() -> void:
 	can_dash = true

@@ -9,7 +9,8 @@ class_name Enemy
 @onready var state_machine: Node = $StateMachine
 var dash_attack_cooldown: Timer
 
-var speed = 50
+var max_speed = 50
+var current_speed = max_speed
 
 func _ready() -> void:
 	dash_attack_cooldown = Timer.new()

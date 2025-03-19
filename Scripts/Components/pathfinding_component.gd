@@ -38,6 +38,7 @@ func _physics_process(_delta: float) -> void:
 func is_player_visible() -> bool:
 	if ray_cast.is_colliding():
 		var collider = ray_cast.get_collider()
+		#shouldnt be HitboxComponent but temporarily is for testing
 		return collider is Player or collider is HitboxComponent
 	return false
 
