@@ -93,16 +93,6 @@ tile_set = SubResource("TileSet_gysox")
 [node name="Player" parent="." instance=ExtResource("4_cosve")]
 position = Vector2(160, 100)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position_smoothing_enabled = true
-position_smoothing_speed = 3.0
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.1
-drag_top_margin = 0.1
-drag_right_margin = 0.1
-drag_bottom_margin = 0.1
-
 [node name="EnemyTest" parent="." instance=ExtResource("5_bs8og")]
 position = Vector2(-92, -30)
 scale = Vector2(1.01253, 1)

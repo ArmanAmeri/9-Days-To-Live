@@ -1,4 +1,5 @@
 extends Node2D
+class_name PathfindingComponent
 
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
@@ -31,12 +32,13 @@ func _physics_process(_delta: float) -> void:
 	if not reached_last_position:
 		var direction = to_local(nav_agent.get_next_path_position()).normalized()
 		move_input.emit(direction)
-	else: move_input.emit(Vector2(0, 0))
+	elif player_visible == false: move_input.emit(Vector2(0, 0))
 
 # RayCast2D visibility logic
 func is_player_visible() -> bool:
 	if ray_cast.is_colliding():
 		var collider = ray_cast.get_collider()
+		#shouldnt be HitboxComponent but temporarily is for testing
 		return collider is Player or collider is HitboxComponent
 	return false
 

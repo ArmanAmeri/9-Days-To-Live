@@ -70,7 +70,7 @@ const Library:  Dictionary = {
 		"weight": 10,
 		"damage_type": "slashing",
 		"inflicted_effect": "bleed"
-	},                    
+	},
 	
 	#Armor
 } 
@@ -215,3 +215,14 @@ var defualt_weapon_info: String = '
 		"damage_type": "none",
 		"inflicted_effect": "none"
 	},                                 '
+
+#Enemy stuff (not done)
+var default_enemy_info: String = '
+	"none": {
+		"ID": "none"
+		"name": "none"
+		"enemy_type": "melee"
+		"damage": none
+		"speed": none
+	}
+'

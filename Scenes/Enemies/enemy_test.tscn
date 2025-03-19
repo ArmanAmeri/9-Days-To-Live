@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://badsnu5m75c2d"]
+[gd_scene load_steps=14 format=3 uid="uid://badsnu5m75c2d"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_test.gd" id="1_bd7i7"]
 [ext_resource type="Texture2D" uid="uid://7n6qnks6iptt" path="res://Assets/Sprites/Enemies/enemyplaceholder.png" id="1_iicjj"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://brrw37x1774kf" path="res://Scenes/Components/hitbox_component.tscn" id="5_lyqdk"]
 [ext_resource type="PackedScene" uid="uid://cyasu10ogqoo3" path="res://Scenes/Components/pathfinding_component.tscn" id="6_tu5bt"]
 [ext_resource type="PackedScene" uid="uid://c6sqhjo0wjn2a" path="res://Scenes/Components/meele_attack_ai_component.tscn" id="7_nduma"]
+[ext_resource type="Script" path="res://Scripts/States/state_machine.gd" id="8_2su1d"]
+[ext_resource type="Script" path="res://Scripts/States/enemy_patrolling.gd" id="9_4m5aa"]
+[ext_resource type="Script" path="res://Scripts/States/enemy_idle.gd" id="10_1vsje"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvtoo"]
 radius = 7.0
@@ -19,7 +22,7 @@ radius = 39.1152
 
 [node name="EnemyTest" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 41
+collision_mask = 40
 script = ExtResource("1_bd7i7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -37,7 +40,6 @@ speed = 50.0
 [node name="HealthComponent" parent="." instance=ExtResource("4_f6jrb")]
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_lyqdk")]
-collision_mask = 1
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
@@ -52,8 +54,14 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeeleAttackAIComponent"]
 shape = SubResource("CircleShape2D_ijj20")
 
-[node name="Timers" type="Node2D" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("8_2su1d")
+initial_state = NodePath("Idle")
 
-[node name="DashAttackCooldown" type="Timer" parent="Timers"]
+[node name="Patrolling" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("9_4m5aa")
+enemy = NodePath("../..")
+max_distance_from_spawn = 100.0
 
-[connection signal="timeout" from="Timers/DashAttackCooldown" to="." method="_on_dash_attack_cooldown_timeout"]
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("10_1vsje")

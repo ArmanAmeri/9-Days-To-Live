@@ -12,7 +12,7 @@ var velocity: Vector2 = Vector2.ZERO
 
 func _physics_process(_delta: float) -> void:
 	if character_body:
-		speed = character_body.speed
+		speed = character_body.current_speed
 		if velocity != Vector2.ZERO:
 			character_body.velocity = velocity.normalized() * speed
 			character_body.move_and_slide()

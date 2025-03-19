@@ -6,10 +6,10 @@
 [ext_resource type="Script" path="res://Scripts/Player/guiding_arrow.gd" id="3_h5clb"]
 [ext_resource type="PackedScene" uid="uid://dufp4cjrdgk4t" path="res://Scenes/Components/movement_component.tscn" id="3_vwc2x"]
 [ext_resource type="PackedScene" uid="uid://brrw37x1774kf" path="res://Scenes/Components/hitbox_component.tscn" id="5_l6lgr"]
-[ext_resource type="PackedScene" uid="uid://c703gl1hq4m7n" path="res://Scenes/Components/input_component.tscn" id="6_1ifru"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/input_component.tscn" id="6_1ifru"]
 [ext_resource type="PackedScene" uid="uid://b0anoxqhe5kra" path="res://Scenes/Components/inventory_component.tscn" id="7_5pc3l"]
 [ext_resource type="PackedScene" uid="uid://u4287d4s2fd2" path="res://Scenes/Components/temp_attack.tscn" id="10_crxcs"]
-[ext_resource type="PackedScene" uid="uid://cdfntcpxnc34f" path="res://Scenes/Components/leveling_component.tscn" id="10_dvgh5"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/leveling_component.tscn" id="10_dvgh5"]
 [ext_resource type="Script" path="res://Scripts/Player/weapon_holder.gd" id="11_m24io"]
 [ext_resource type="Texture2D" uid="uid://tdv3p68hn8ax" path="res://Assets/Sprites/Characters/GuidingArrow3.png" id="12_fbrtn"]
 [ext_resource type="Script" path="res://Scripts/Player/target_arrow.gd" id="13_k1h4w"]
@@ -198,3 +198,13 @@ metadata/_aseprite_wizard_source_file_hash_ = "9005ce5b7802f1f4004a3c2b4499725c"
 
 [node name="PhysicalBody" type="CollisionShape2D" parent="TargetArrow"]
 shape = SubResource("CircleShape2D_pooj8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
