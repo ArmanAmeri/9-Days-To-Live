@@ -1,5 +1,7 @@
 extends Node
 
+signal move_input(direction: Vector2)
+
 @export var initial_state: State
 
 @onready var character_body = get_parent() as CharacterBody2D
@@ -25,7 +27,9 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if current_state:
-		current_state.physics_update(delta)
+		move_input.emit(current_state.move_direction)
+		if current_state.has_method("physics_update"):
+			current_state.physics_update(delta)
 
 func on_child_transition(state, new_state_name):
 	if state != current_state:

@@ -6,9 +6,7 @@ signal move_input(direction: Vector2)
 @onready var character_body = get_parent().get_parent() as CharacterBody2D
 
 var wander_time: float
-
-func physics_update(delta: float):
-	move_input.emit(Vector2(0, 0))
+var move_direction: Vector2
 
 func enter():
 	character_body.current_speed = 0
