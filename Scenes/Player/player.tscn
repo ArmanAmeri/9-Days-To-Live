@@ -6,10 +6,10 @@
 [ext_resource type="Script" path="res://Scripts/Player/guiding_arrow.gd" id="3_h5clb"]
 [ext_resource type="PackedScene" uid="uid://dufp4cjrdgk4t" path="res://Scenes/Components/movement_component.tscn" id="3_vwc2x"]
 [ext_resource type="PackedScene" uid="uid://brrw37x1774kf" path="res://Scenes/Components/hitbox_component.tscn" id="5_l6lgr"]
-[ext_resource type="PackedScene" uid="uid://c703gl1hq4m7n" path="res://Scenes/Components/input_component.tscn" id="6_1ifru"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/input_component.tscn" id="6_1ifru"]
 [ext_resource type="PackedScene" uid="uid://b0anoxqhe5kra" path="res://Scenes/Components/inventory_component.tscn" id="7_5pc3l"]
 [ext_resource type="PackedScene" uid="uid://u4287d4s2fd2" path="res://Scenes/Components/temp_attack.tscn" id="10_crxcs"]
-[ext_resource type="PackedScene" uid="uid://cdfntcpxnc34f" path="res://Scenes/Components/leveling_component.tscn" id="10_dvgh5"]
+[ext_resource type="PackedScene" path="res://Scenes/Components/leveling_component.tscn" id="10_dvgh5"]
 [ext_resource type="Script" path="res://Scripts/Player/weapon_holder.gd" id="11_m24io"]
 [ext_resource type="Texture2D" uid="uid://tdv3p68hn8ax" path="res://Assets/Sprites/Characters/GuidingArrow3.png" id="12_fbrtn"]
 [ext_resource type="Script" path="res://Scripts/Player/target_arrow.gd" id="13_k1h4w"]
@@ -304,7 +304,7 @@ position = Vector2(0, -17)
 texture = ExtResource("2_weer4")
 hframes = 7
 vframes = 6
-frame = 8
+frame = 6
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": true,
 "layer_section": true,
