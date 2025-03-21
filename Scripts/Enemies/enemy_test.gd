@@ -16,7 +16,7 @@ func _ready() -> void:
 	dash_attack_cooldown = Timer.new()
 	dash_attack_cooldown.wait_time = 0.5
 	#pathfinding_component.connect("move_input", _on_move_input)
-	enemy_patrolling.connect("move_input", _on_move_input)
+	state_machine.connect("move_input", _on_move_input)
 	#meele_attack_ai_component.connect("meele_range_entered", _on_meele_range_entered)
 	#meele_attack_ai_component.connect("meele_range_exited", _on_meele_range_exited)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://badsnu5m75c2d"]
+[gd_scene load_steps=15 format=3 uid="uid://badsnu5m75c2d"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_test.gd" id="1_bd7i7"]
 [ext_resource type="Texture2D" uid="uid://7n6qnks6iptt" path="res://Assets/Sprites/Enemies/enemyplaceholder.png" id="1_iicjj"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/States/state_machine.gd" id="8_2su1d"]
 [ext_resource type="Script" path="res://Scripts/States/enemy_patrolling.gd" id="9_4m5aa"]
 [ext_resource type="Script" path="res://Scripts/States/enemy_idle.gd" id="10_1vsje"]
+[ext_resource type="Script" path="res://Scripts/States/enemy_chasing.gd" id="11_twb2j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvtoo"]
 radius = 7.0
@@ -56,7 +57,7 @@ shape = SubResource("CircleShape2D_ijj20")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("8_2su1d")
-initial_state = NodePath("Idle")
+initial_state = NodePath("Chasing")
 
 [node name="Patrolling" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("9_4m5aa")
@@ -65,3 +66,8 @@ max_distance_from_spawn = 100.0
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("10_1vsje")
+
+[node name="Chasing" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "pathfindingcomp")]
+script = ExtResource("11_twb2j")
+enemy = NodePath("../..")
+pathfindingcomp = NodePath("../../PathfindingComponent")

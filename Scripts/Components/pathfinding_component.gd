@@ -10,6 +10,8 @@ var player_visible: bool = false
 var last_seen_position: Vector2 = Vector2.ZERO  # Last known player position
 var stopping_distance: float = 5.0  # Distance threshold to stop at the target
 var reached_last_position: bool = true  # Whether the enemy reached the last seen position
+var movement_direction: Vector2 #for state machine
+
 
 signal move_input(direction: Vector2)
 
@@ -31,7 +33,7 @@ func _physics_process(_delta: float) -> void:
 	# Handle movement if not at the target
 	if not reached_last_position:
 		var direction = to_local(nav_agent.get_next_path_position()).normalized()
-		move_input.emit(direction)
+		movement_direction = direction
 	elif player_visible == false: move_input.emit(Vector2(0, 0))
 
 # RayCast2D visibility logic
