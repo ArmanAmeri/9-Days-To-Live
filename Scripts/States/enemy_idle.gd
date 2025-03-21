@@ -7,7 +7,7 @@ signal move_input(direction: Vector2)
 
 var wander_time: float
 
-func physics_update(delta: float):
+func physics_update(_delta: float):
 	move_input.emit(Vector2(0, 0))
 
 func enter():

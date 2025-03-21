@@ -34,6 +34,6 @@ func update(delta: float):
 		wander_time -= delta
 	else: transitioned.emit(self, "idle")
 
-func physics_update(delta: float):
+func physics_update(_delta: float):
 	if enemy:
 		move_input.emit(move_direction)

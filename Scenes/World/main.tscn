@@ -96,6 +96,7 @@ position = Vector2(160, 100)
 [node name="EnemyTest" parent="." instance=ExtResource("5_bs8og")]
 position = Vector2(-92, -30)
 scale = Vector2(1.01253, 1)
+collision_mask = 41
 
 [node name="ItemsOnGround" type="Node2D" parent="."]
 

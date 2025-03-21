@@ -8,15 +8,24 @@ class_name Player
 @onready var dash_timer: Timer = $Timers/DashTimer
 @onready var dash_cooldown: Timer = $Timers/DashCooldown
 
+@onready var animation_tree: AnimationTree = $AnimationTree
+
 
 var can_dash: bool = true
 var current_speed: float = 100
 var orgspeed: float = 100
 
+var move_dir: Vector2 = Vector2.ZERO
+
 func _ready() -> void:
+	animation_tree.active = true
+	
 	input_component.connect("move_input", _on_move_input)
 	dash_timer.connect("timeout", _dash_stop)
 	dash_cooldown.connect("timeout", _dash_cooldown)
+
+func _process(_delta: float) -> void:
+	update_animation_parameters()
 
 func _on_move_input(direction: Vector2, dashing: bool, dash_direction: Vector2) -> void:
 	if dashing and can_dash:
@@ -28,6 +37,7 @@ func _on_move_input(direction: Vector2, dashing: bool, dash_direction: Vector2) 
 		movement_component.set_velocity(dash_direction)
 	else:
 		movement_component.set_velocity(direction)
+		move_dir = direction
 
 
 func inventoryAction(action: String, itemName: String, amount: int):
@@ -50,6 +60,24 @@ func inventoryAction(action: String, itemName: String, amount: int):
 		print("Invalid Inventory Action")
 	
 	inventory.print_inventory()
+
+func update_animation_parameters():
+	if velocity == Vector2.ZERO:
+		animation_tree["parameters/conditions/is_idle"] = true
+		animation_tree["parameters/conditions/is_running"] = false
+	else:
+		animation_tree["parameters/conditions/is_idle"] = false
+		animation_tree["parameters/conditions/is_running"] = true
+		
+	if Input.is_action_just_pressed("attack"):
+		animation_tree["parameters/conditions/is_attacking"] = true
+	else:
+		animation_tree["parameters/conditions/is_attacking"] = false
+	
+	if move_dir != Vector2.ZERO:
+		animation_tree["parameters/Run/blend_position"] = move_dir
+		animation_tree["parameters/Attack/blend_position"] = move_dir
+		animation_tree["parameters/Idle/blend_position"] = move_dir
 
 func _dash_stop() -> void:
 	current_speed = orgspeed
