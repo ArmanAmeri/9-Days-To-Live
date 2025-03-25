@@ -12,8 +12,8 @@ class_name Player
 
 
 var can_dash: bool = true
-var current_speed: float = 100
-var orgspeed: float = 100
+var current_speed: float = 120
+var orgspeed: float = 120
 
 var move_dir: Vector2 = Vector2.ZERO
 

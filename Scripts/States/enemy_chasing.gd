@@ -8,7 +8,7 @@ class_name EnemyChasing
 
 var move_direction: Vector2
 
-func physics_update(delta: float):
+func physics_update(_delta: float):
 	var direction = pathfindingcomp.movement_direction
 	var distance = player.global_position - enemy.global_position
 	print(pathfindingcomp.movement_direction)
