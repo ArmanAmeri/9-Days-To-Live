@@ -67,7 +67,6 @@ max_distance_from_spawn = 100.0
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("10_1vsje")
 
-[node name="Chasing" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "pathfindingcomp")]
+[node name="Chasing" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("11_twb2j")
 enemy = NodePath("../..")
-pathfindingcomp = NodePath("../../PathfindingComponent")
