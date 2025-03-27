@@ -10,6 +10,7 @@ func equip_weapon(weapon_scene: PackedScene) -> void:
 	
 	current_weapon = weapon_scene.instantiate() as Weapon
 	self.add_child(current_weapon)
+	PlayerInfo.weapon_animation_type = current_weapon.type
 
 func attack() -> void:
 	if current_weapon:
@@ -17,3 +18,6 @@ func attack() -> void:
 
 func get_current_weapon() -> Weapon:
 	return current_weapon
+
+func update_sprite() -> void:
+	pass

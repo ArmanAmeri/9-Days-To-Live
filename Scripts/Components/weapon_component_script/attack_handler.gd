@@ -27,7 +27,7 @@ func _ready() -> void:
 	if not attack_timer.timeout.is_connected(_on_attack_timer_timeout):
 		attack_timer.timeout.connect(_on_attack_timer_timeout)
 
-func perform_attack() -> void:
+func perform_attack(facing_dir:String) -> void:
 	if not can_attack:
 		return
 	
