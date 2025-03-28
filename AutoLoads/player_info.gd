@@ -1,11 +1,16 @@
 extends Node
 
-var pos: Vector2
-var speed: float
-var speed_modifier: float
-var hp_max: int
+# Temp Stats
 var hp: int
+var pos: Vector2
+var speed_modifier: float
 var attack_modifier: float
 var attack_speed_modifier: float
+var facing_dir: String
 
-var weapon_animation_type: String = "sword"
+# Base Stats
+var speed: float
+var hp_max: int
+
+#Current Weapon
+var weapon_type: String = "sword"

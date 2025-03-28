@@ -78,6 +78,15 @@ func update_animation_parameters():
 		animation_tree["parameters/Run/blend_position"] = move_dir
 		animation_tree["parameters/Attack/blend_position"] = move_dir
 		animation_tree["parameters/Idle/blend_position"] = move_dir
+		
+		if move_dir == Vector2(1, 0):
+			PlayerInfo.facing_dir = "E"
+		elif move_dir == Vector2(0, 1):
+			PlayerInfo.facing_dir = "S"
+		elif move_dir == Vector2(0, -1):
+			PlayerInfo.facing_dir = "N"
+		elif move_dir == Vector2(-1, 0):
+			PlayerInfo.facing_dir = "W"
 
 func _dash_stop() -> void:
 	current_speed = orgspeed
