@@ -9,7 +9,7 @@ signal move_input(direction: Vector2)
 @export var movement_speed := 10.0
 @export var max_distance_from_spawn: float
 
-@onready var pathfindingcomp = get_parent().pathfindingcomp
+@onready var pathfindingcomp: PathfindingComponent = get_parent().pathfindingcomp
 
 var move_direction: Vector2
 var move_position: Vector2
@@ -32,8 +32,8 @@ func enter():
 	randomize_wander()
 
 func update(delta: float):
-	if wander_time > 0:
-		wander_time -= delta
-	elif pathfindingcomp.is_player_visible():
+	if pathfindingcomp.is_player_visible():
 		transitioned.emit(self, "chasing")
+	elif wander_time > 0:
+		wander_time -= delta
 	else: transitioned.emit(self, "idle")

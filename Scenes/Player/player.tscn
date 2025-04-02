@@ -304,7 +304,7 @@ position = Vector2(0, -17)
 texture = ExtResource("2_weer4")
 hframes = 7
 vframes = 6
-frame = 6
+frame = 8
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": true,
 "layer_section": true,

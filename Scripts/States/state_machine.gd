@@ -4,8 +4,10 @@ signal move_input(direction: Vector2)
 
 @export var initial_state: State
 
-@onready var pathfindingcomp: PathfindingComponent = $"../PathfindingComponent"
+@export var pathfindingcomp: PathfindingComponent
+
 @onready var character_body = get_parent() as CharacterBody2D
+@onready var state_label: Label = $"../StateLabel"
 
 var current_state: State
 var states: Dictionary = {}
@@ -45,3 +47,4 @@ func on_child_transition(state, new_state_name):
 	
 	new_state.enter()
 	current_state = new_state
+	state_label.text = str(current_state.name)

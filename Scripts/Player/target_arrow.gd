@@ -58,7 +58,7 @@ func _process(_delta: float) -> void:
 		if Input.is_action_pressed("l"):
 			direction.x += 1
 	
-	print("target: ", targetPos)
+	#print("target: ", targetPos)
 	#print("direction: ", direction)
 	#print("last positon: ", lastPos)
 	#print("positon: ", position)

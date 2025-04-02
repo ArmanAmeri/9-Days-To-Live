@@ -1,0 +1,67 @@
+[gd_scene load_steps=13 format=3 uid="uid://ba2ek20j8l80s"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/enemy_test.gd" id="1_21pfa"]
+[ext_resource type="Texture2D" uid="uid://c7lge6emrjw2y" path="res://Assets/Sprites/Enemies/RangedEnemySprite.png" id="1_s6uf8"]
+[ext_resource type="PackedScene" uid="uid://dufp4cjrdgk4t" path="res://Scenes/Components/movement_component.tscn" id="3_lcc7v"]
+[ext_resource type="PackedScene" uid="uid://c5w2f44wlbeyd" path="res://Scenes/Components/health_component.tscn" id="4_l050g"]
+[ext_resource type="PackedScene" uid="uid://brrw37x1774kf" path="res://Scenes/Components/hitbox_component.tscn" id="5_cx0p0"]
+[ext_resource type="PackedScene" uid="uid://cyasu10ogqoo3" path="res://Scenes/Components/pathfinding_component.tscn" id="6_xnun5"]
+[ext_resource type="Script" path="res://Scripts/States/state_machine.gd" id="7_by21e"]
+[ext_resource type="Script" path="res://Scripts/States/enemy_patrolling.gd" id="8_m7t84"]
+[ext_resource type="Script" path="res://Scripts/States/enemy_idle.gd" id="9_4vs6v"]
+[ext_resource type="Script" path="res://Scripts/States/enemy_chasing.gd" id="10_tmqnc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vqwci"]
+radius = 10.0499
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3safq"]
+size = Vector2(32, 15)
+
+[node name="RangedEnemy" type="CharacterBody2D"]
+script = ExtResource("1_21pfa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1, -5)
+texture = ExtResource("1_s6uf8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_vqwci")
+
+[node name="MovementComponent" parent="." instance=ExtResource("3_lcc7v")]
+speed = 50.0
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_l050g")]
+
+[node name="HitboxComponent" parent="." instance=ExtResource("5_cx0p0")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_3safq")
+
+[node name="PathfindingComponent" parent="." instance=ExtResource("6_xnun5")]
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "pathfindingcomp")]
+script = ExtResource("7_by21e")
+initial_state = NodePath("Idle")
+pathfindingcomp = NodePath("../PathfindingComponent")
+
+[node name="Patrolling" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("8_m7t84")
+enemy = NodePath("../..")
+max_distance_from_spawn = 100.0
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("9_4vs6v")
+
+[node name="Chasing" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("10_tmqnc")
+enemy = NodePath("../..")
+
+[node name="StateLabel" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -30.0
+offset_right = 21.0
+offset_bottom = -7.0
+text = "State"
