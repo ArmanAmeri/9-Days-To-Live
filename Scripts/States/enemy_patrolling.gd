@@ -10,6 +10,7 @@ signal move_input(direction: Vector2)
 @export var max_distance_from_spawn: float
 
 @onready var pathfindingcomp: PathfindingComponent = get_parent().pathfindingcomp
+@onready var marker: Line2D = $"../../Line2D"
 
 var move_direction: Vector2
 var move_position: Vector2
@@ -18,12 +19,13 @@ var spawn_position: Vector2
 
 func _ready() -> void:
 	spawn_position = enemy.position
-	#print("Enemys spawn position: ", spawn_position)
+	print("Enemys spawn position: ", spawn_position)
 
 func randomize_wander():
 	move_position = Vector2(randf_range(spawn_position.x - max_distance_from_spawn, spawn_position.x + max_distance_from_spawn), randf_range(spawn_position.y - max_distance_from_spawn, spawn_position.y + max_distance_from_spawn))
-	#print("The enemy should be heading towards: ", move_position)
 	
+	marker.global_position = move_position
+	marker.set_as_top_level(true)
 	move_direction = enemy.position.direction_to(move_position)
 	#print("Current enemy pos", enemy.position)
 	wander_time = randf_range(1, 3)

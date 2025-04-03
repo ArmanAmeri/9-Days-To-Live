@@ -13,7 +13,7 @@ func physics_update(_delta: float):
 	var distance = player.global_position - enemy.global_position
 	
 	#If ready to attack
-	if distance.length() < 25: #25 is attack range
+	if distance.length() < 45: #attack range
 		enemy.current_speed = 0
 		#transition to attack component here
 	

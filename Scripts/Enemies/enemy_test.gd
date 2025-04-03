@@ -9,7 +9,7 @@ class_name Enemy
 @onready var state_machine: Node = $StateMachine
 var dash_attack_cooldown: Timer
 
-var max_speed = 50
+@export var max_speed = 50
 var current_speed = max_speed
 
 func _ready() -> void:
@@ -21,4 +21,5 @@ func _ready() -> void:
 	#meele_attack_ai_component.connect("meele_range_exited", _on_meele_range_exited)
 
 func _on_move_input(direction: Vector2) -> void:
+	#print(str(self.name) + " the direction is " + str(direction))
 	movement_component.set_velocity(direction)

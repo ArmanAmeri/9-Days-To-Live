@@ -3,7 +3,6 @@ extends Node
 signal move_input(direction: Vector2)
 
 @export var initial_state: State
-
 @export var pathfindingcomp: PathfindingComponent
 
 @onready var character_body = get_parent() as CharacterBody2D

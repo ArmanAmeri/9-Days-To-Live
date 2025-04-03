@@ -25,6 +25,7 @@ radius = 39.1152
 collision_layer = 2
 collision_mask = 40
 script = ExtResource("1_bd7i7")
+max_speed = 80
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -55,13 +56,15 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeeleAttackAIComponent"]
 shape = SubResource("CircleShape2D_ijj20")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("pathfindingcomp")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "pathfindingcomp")]
 script = ExtResource("8_2su1d")
+initial_state = NodePath("Idle")
 pathfindingcomp = NodePath("../PathfindingComponent")
 
 [node name="Patrolling" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("9_4m5aa")
 enemy = NodePath("../..")
+max_distance_from_spawn = 100.0
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("10_1vsje")
@@ -76,3 +79,8 @@ offset_top = -30.0
 offset_right = 21.0
 offset_bottom = -7.0
 text = "State"
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(50, 0)
+points = PackedVector2Array(0, 0, 9, 0)
+default_color = Color(1, 0, 0, 1)
