@@ -1,8 +1,6 @@
 extends State
 class_name EnemyIdle
 
-signal move_input(direction: Vector2)
-
 @onready var character_body = get_parent().get_parent() as CharacterBody2D
 @onready var pathfindingcomp: PathfindingComponent = get_parent().pathfindingcomp
 

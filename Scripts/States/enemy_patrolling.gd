@@ -3,8 +3,6 @@ class_name EnemyPatrolling
 
 #BUG: random pos can be a wall, thus making the enemy go in to a wall. Can be fixed by checking tilemap layer
 
-signal move_input(direction: Vector2)
-
 @export var enemy: CharacterBody2D
 @export var movement_speed := 10.0
 @export var max_distance_from_spawn: float
