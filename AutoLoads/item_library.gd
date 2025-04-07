@@ -66,7 +66,7 @@ const Library:  Dictionary = {
 		"weapon_type": "sword",
 		"damage": 10,
 		"attack_speed": 2.5,
-		"range": 4,
+		"range": "Medium",
 		"weight": 10,
 		"damage_type": "slashing",
 		"inflicted_effect": "bleed"

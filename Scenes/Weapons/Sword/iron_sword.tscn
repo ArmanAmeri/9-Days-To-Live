@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvc86m2anj1tu"]
+[gd_scene load_steps=12 format=3 uid="uid://bvc86m2anj1tu"]
 
 [ext_resource type="Script" path="res://Scripts/Components/weapon_component_script/weapon_base.gd" id="1_1dgno"]
 [ext_resource type="Script" path="res://Scripts/Components/weapon_component_script/attack_data.gd" id="3_3o84h"]
@@ -24,67 +24,13 @@ knockback_force = 0.0
 status_effects = Array[ExtResource("4_bev1g")]([SubResource("Resource_gpmls")])
 attack_speed = 0.0
 
-[sub_resource type="Animation" id="Animation_b1q3e"]
-resource_name = "test"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AttackArea/CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [false, false, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AttackArea/CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-26, 22), Vector2(54, -16), Vector2(-44, -17)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AttackArea/CollisionShape2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AttackArea/CollisionShape2D:shape:radius")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [10.0, 29.0172, 29.0172]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yp8jm"]
-_data = {
-"test": SubResource("Animation_b1q3e")
-}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l12c3"]
-radius = 29.0172
 
 [node name="IronSword" type="Node2D"]
 script = ExtResource("1_1dgno")
+id_name = "iron_sword"
 attack_data = SubResource("Resource_e0ewc")
 
 [node name="AttackHandler" type="Node2D" parent="."]
@@ -103,9 +49,9 @@ libraries = {
 
 [node name="AttackArea" parent="." node_paths=PackedStringArray("anim_player") instance=ExtResource("5_gybxo")]
 anim_player = NodePath("../AnimationPlayer")
-recording_animation = "test"
+recording_animation = "attack"
 current_time = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-44, -17)
+scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_l12c3")

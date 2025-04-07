@@ -12,8 +12,8 @@ class_name Player
 
 
 var can_dash: bool = true
-var current_speed: float = 100
-var orgspeed: float = 100
+var current_speed: float = 120
+var orgspeed: float = 120
 
 var move_dir: Vector2 = Vector2.ZERO
 
@@ -78,6 +78,15 @@ func update_animation_parameters():
 		animation_tree["parameters/Run/blend_position"] = move_dir
 		animation_tree["parameters/Attack/blend_position"] = move_dir
 		animation_tree["parameters/Idle/blend_position"] = move_dir
+		
+		if move_dir == Vector2(1, 0):
+			PlayerInfo.facing_dir = "E"
+		elif move_dir == Vector2(0, 1):
+			PlayerInfo.facing_dir = "S"
+		elif move_dir == Vector2(0, -1):
+			PlayerInfo.facing_dir = "N"
+		elif move_dir == Vector2(-1, 0):
+			PlayerInfo.facing_dir = "W"
 
 func _dash_stop() -> void:
 	current_speed = orgspeed

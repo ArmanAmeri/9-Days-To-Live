@@ -22,6 +22,7 @@ itemLibrary="*res://AutoLoads/item_library.tscn"
 Globals="*res://AutoLoads/Globals.gd"
 Inputinfo="*res://AutoLoads/Inputinfo.gd"
 Signalbus="*res://AutoLoads/Signalbus.gd"
+PlayerInfo="*res://AutoLoads/player_info.gd"
 
 [display]
 

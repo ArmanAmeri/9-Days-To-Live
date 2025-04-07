@@ -27,15 +27,24 @@ func _ready() -> void:
 	if not attack_timer.timeout.is_connected(_on_attack_timer_timeout):
 		attack_timer.timeout.connect(_on_attack_timer_timeout)
 
-func perform_attack() -> void:
+func perform_attack(facing_dir:String) -> void:
 	if not can_attack:
 		return
 	
 	can_attack = false
 	attack_timer.start(1.0 / attack_data.attack_speed)
 	
-	if anim_player and anim_player.has_animation("attack"):
-		anim_player.play("attack")
+	# After trying thing around, i think it should be a vector faceing_dir and also a rotation on where the attack will be at.
+	if anim_player:
+		if facing_dir == "N":
+			anim_player.play("N")
+		elif facing_dir == "S":
+			anim_player.play("S")
+		elif facing_dir == "E":
+			anim_player.play("E")
+		elif facing_dir == "W":
+			anim_player.play("W")
+	
 	
 	var targets = _get_targets_in_range()
 	for target in targets:
