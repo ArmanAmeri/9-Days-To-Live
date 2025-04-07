@@ -8,6 +8,7 @@ class_name EnemyPatrolling
 @export var max_distance_from_spawn: float
 
 @onready var pathfindingcomp: PathfindingComponent = get_parent().pathfindingcomp
+@onready var loscomp: LOSComponent = get_parent().los_component
 @onready var marker: Line2D = $"../../Line2D"
 
 var move_direction: Vector2
@@ -32,7 +33,7 @@ func enter():
 	randomize_wander()
 
 func update(delta: float):
-	if pathfindingcomp.is_player_visible():
+	if loscomp.check_ray_collisions(loscomp.ray_list):
 		transitioned.emit(self, "chasing")
 	elif wander_time > 0:
 		wander_time -= delta

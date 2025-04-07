@@ -3,8 +3,8 @@ class_name PathfindingComponent
 
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
-@onready var ray_cast: RayCast2D = $RayCast2D
 @onready var recalculation_timer: Timer = $RecalculationTimer
+@onready var los_component: Node2D = $"../LOSComponent"
 
 var player_visible: bool = false
 var last_seen_position: Vector2 = Vector2.ZERO  # Last known player position
@@ -20,10 +20,10 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	# RayCast2D always looks at the player
-	ray_cast.look_at(player.global_position)
+	los_component.look_at(player.global_position)
 
 	# Check player visibility with RayCast2D
-	player_visible = is_player_visible()
+	player_visible = los_component.check_ray_collisions(los_component.ray_list)
 
 	# Stop moving if the enemy has reached the last known position
 	if nav_agent.is_navigation_finished() and is_at_target():
@@ -36,13 +36,6 @@ func _physics_process(_delta: float) -> void:
 		movement_direction = direction
 	elif player_visible == false: move_input.emit(Vector2(0, 0))
 
-# RayCast2D visibility logic
-func is_player_visible() -> bool:
-	if ray_cast.is_colliding():
-		var collider = ray_cast.get_collider()
-		#shouldnt be HitboxComponent but temporarily is for testing
-		return collider is Player or collider is HitboxComponent
-	return false
 
 # Recalculate path based on visibility
 func recalculate_path() -> void:

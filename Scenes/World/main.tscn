@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://bib3plfdoib4"]
+[gd_scene load_steps=19 format=4 uid="uid://bib3plfdoib4"]
 
 [ext_resource type="Texture2D" uid="uid://cnh1owatecjwf" path="res://Assets/Sprites/Tilesets/PlaceholderBlock.png" id="1_6uknj"]
 [ext_resource type="Texture2D" uid="uid://bno7esqlj7i3i" path="res://Assets/Sprites/Tilesets/PlaceholderWall.png" id="2_dg3lt"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://badsnu5m75c2d" path="res://Scenes/Enemies/enemy_test.tscn" id="5_bs8og"]
 [ext_resource type="PackedScene" uid="uid://coceamwy3pynb" path="res://Scenes/Interactable Objects/test_chest.tscn" id="6_maahp"]
 [ext_resource type="Script" path="res://Data/drop_data.gd" id="7_mysro"]
-[ext_resource type="PackedScene" uid="uid://ba2ek20j8l80s" path="res://Scenes/Enemies/ranged_enemy.tscn" id="8_8dxbi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ce7nm"]
 texture = ExtResource("2_dg3lt")
@@ -120,6 +119,3 @@ drops = Array[ExtResource("7_mysro")]([SubResource("Resource_o0j5x")])
 [node name="TestChest5" parent="." instance=ExtResource("6_maahp")]
 position = Vector2(158, -114)
 drops = Array[ExtResource("7_mysro")]([SubResource("Resource_4fvje")])
-
-[node name="RangedEnemy" parent="." instance=ExtResource("8_8dxbi")]
-position = Vector2(-144, 111)

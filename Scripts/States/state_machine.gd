@@ -4,6 +4,7 @@ signal move_input(direction: Vector2)
 
 @export var initial_state: State
 @export var pathfindingcomp: PathfindingComponent
+@export var los_component: LOSComponent
 
 @onready var character_body = get_parent() as CharacterBody2D
 @onready var state_label: Label = $"../StateLabel"
