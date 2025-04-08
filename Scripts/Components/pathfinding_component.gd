@@ -38,7 +38,7 @@ func _physics_process(_delta: float) -> void:
 
 
 # Recalculate path based on visibility
-func recalculate_path() -> void:
+func recalculate_path_to_player() -> void:
 	if player_visible and player:
 		# If player is visible, set the target position to the player's current position
 		nav_agent.target_position = player.global_position
@@ -48,10 +48,14 @@ func recalculate_path() -> void:
 		# If player is not visible, navigate to the last known position
 		nav_agent.target_position = last_seen_position
 
+func recalculate_path(target):
+	nav_agent.target_position = target
+	last_seen_position = target
+
 # Timer for performance optimization
 func _on_recalculation_timer_timeout() -> void:
 	if not is_at_target():  # Only recalculate if not at the target
-		recalculate_path()
+		recalculate_path_to_player()
 
 # Check if the enemy has reached its destination
 func is_at_target() -> bool:

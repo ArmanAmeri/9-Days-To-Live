@@ -17,7 +17,7 @@ func physics_update(_delta: float):
 		enemy.current_speed = 0
 		#transition to attack component here
 	
-	#if player non visible
+	#if player non visible2 
 	elif pathfindingcomp.is_at_target():
 		enemy.current_speed = 0
 		transitioned.emit(self, "idle")
