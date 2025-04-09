@@ -417,14 +417,12 @@ disabled = true
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(-41, 24)
 rotation = 0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_dr6nw")
 disabled = true
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(34.9105, 24.0895)
 rotation = 0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_5wry0")
 disabled = true
 

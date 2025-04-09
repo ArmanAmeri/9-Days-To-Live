@@ -32,7 +32,7 @@ func take_damage(damage_amount: float, damage_type: int = AttackData.DamageType.
 	
 	# Apply damage
 	current_health -= reduced_damage
-	
+	print(current_health)
 	# Emit signals
 	health_changed.emit(current_health, max_health)
 	damage_taken.emit(reduced_damage, damage_type)
