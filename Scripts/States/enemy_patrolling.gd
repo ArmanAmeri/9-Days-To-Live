@@ -35,16 +35,15 @@ func enter():
 	randomize_wander()
 
 func physics_update(_delta: float):
-	var direction = pathfindingcomp.movement_direction
+	var direction = pathfindingcomp.to_local(pathfindingcomp.nav_agent.get_next_path_position()).normalized()
 	
 	#if player non visible2 
 	if pathfindingcomp.is_at_target():
 		enemy.current_speed = 0
 		transitioned.emit(self, "idle")
-	else: 
-		enemy.current_speed = enemy.max_speed
-		move_direction = direction
-	print(move_direction)
+	#else: 
+	enemy.current_speed = enemy.max_speed
+	move_direction = direction
 
 
 func update(delta: float):

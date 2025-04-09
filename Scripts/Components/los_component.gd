@@ -13,10 +13,14 @@ class_name LOSComponent
 
 
 func check_ray_collisions(rayarray: Array):
+	var player_visible: bool
 	for i in range(len(rayarray)):
 		if rayarray[i].is_colliding():
 			var collider = rayarray[i].get_collider()
+			print(collider)
 			#shouldnt be HitboxComponent but temporarily is for testing
 			if collider is Player or collider is HitboxComponent:
-				return true
-		return false
+				player_visible = true
+				break
+			else: player_visible = false
+	return player_visible

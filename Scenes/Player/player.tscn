@@ -1015,6 +1015,7 @@ texture_filter = 1
 texture = ExtResource("3_k1qj4")
 hframes = 5
 vframes = 4
+frame = 2
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "output_section": true,
@@ -1039,7 +1040,7 @@ texture_filter = 1
 texture = ExtResource("2_sk8in")
 hframes = 5
 vframes = 5
-frame = 2
+frame = 3
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "output_section": true,
@@ -1064,6 +1065,7 @@ texture_filter = 1
 texture = ExtResource("2_5q7l1")
 hframes = 4
 vframes = 3
+frame = 1
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": true,
 "layer_section": true,
@@ -1126,14 +1128,12 @@ parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Run/blend_position = Vector2(0, 0)
 
 [node name="Feet" type="CollisionShape2D" parent="."]
-visible = false
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_lmh4r")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_54ccj")]
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_l6lgr")]
-visible = false
 collision_layer = 1
 health_component = NodePath("../HealthComponent")
 

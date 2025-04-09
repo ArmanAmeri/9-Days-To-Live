@@ -8,23 +8,28 @@ script = ExtResource("1_56mbo")
 [node name="Ray" type="RayCast2D" parent="."]
 target_position = Vector2(200, 0)
 collision_mask = 9
+collide_with_areas = true
 
 [node name="Ray2" type="RayCast2D" parent="."]
 rotation = 0.0872665
 target_position = Vector2(200, 0)
 collision_mask = 9
+collide_with_areas = true
 
 [node name="Ray3" type="RayCast2D" parent="."]
 rotation = -0.0872665
 target_position = Vector2(200, 0)
 collision_mask = 9
+collide_with_areas = true
 
 [node name="Ray4" type="RayCast2D" parent="."]
 rotation = 0.174533
 target_position = Vector2(200, 0)
 collision_mask = 9
+collide_with_areas = true
 
 [node name="Ray5" type="RayCast2D" parent="."]
 rotation = -0.174533
 target_position = Vector2(200, 0)
 collision_mask = 9
+collide_with_areas = true
