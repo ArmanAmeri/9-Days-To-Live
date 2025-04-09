@@ -4,9 +4,11 @@ extends Node2D
 signal durability_changed(new_value: float)
 signal durability_depleted
 
-@export var max_durability: float = get_parent().durability_max if get_parent() is Weapon else null
+
+@onready var id_name: String = get_parent().id_name if get_parent() is Weapon else null
+@onready var max_durability: float = itemLibrary.get_item_info(id_name, "max_durability")
 @export var indestructable: bool = true
-var current_durability: float
+var current_durability: float = 100.0
 
 func _ready() -> void:
 	current_durability = max_durability

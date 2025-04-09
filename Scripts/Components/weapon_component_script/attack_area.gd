@@ -2,8 +2,8 @@
 extends Area2D
 class_name AttackArea
 
-# Changed from @onready to regular variable
-var collision_shape: CollisionShape2D
+# Array to store multiple collision shapes
+var collision_shapes: Array[CollisionShape2D] = []
 @export var anim_player: AnimationPlayer
 @onready var attack_data: AttackData = get_parent().attack_data if get_parent() is Weapon else null
 
@@ -58,35 +58,38 @@ var collision_shape: CollisionShape2D
 
 signal hit_confirmed(target: Node2D)
 
+# Dictionary to store frame data for all collision shapes
+# Structure: {time: {shape_id: {shape_data}}}
 var frame_data: Dictionary = {}
 
 func _ready() -> void:
-	# Find the collision shape
-	for child in get_children():
-		if child is CollisionShape2D:
-			collision_shape = child
-			print("Found collision shape: ", collision_shape.name)
-			break
+	# Find all collision shapes
+	_find_collision_shapes()
 			
-	if not collision_shape:
-		print("WARNING: No CollisionShape2D found as child of AttackArea!")
+	if collision_shapes.is_empty():
+		print("WARNING: No CollisionShape2D found as children of AttackArea!")
 	
 	if not Engine.is_editor_hint():
-		if collision_shape:
-			collision_shape.disabled = true
+		for shape in collision_shapes:
+			shape.disabled = true
 		body_entered.connect(_on_body_entered)
 	else:
 		if anim_player:
 			anim_player.stop()
 
 func _enter_tree() -> void:
-	# Also try to find collision shape when entering tree
-	if not collision_shape:
-		for child in get_children():
-			if child is CollisionShape2D:
-				collision_shape = child
-				print("Found collision shape on enter tree: ", collision_shape.name)
-				break
+	# Also try to find collision shapes when entering tree
+	if collision_shapes.is_empty():
+		_find_collision_shapes()
+
+func _find_collision_shapes() -> void:
+	collision_shapes.clear()
+	for child in get_children():
+		if child is CollisionShape2D:
+			collision_shapes.append(child)
+			print("Found collision shape: ", child.name)
+	
+	print("Total collision shapes found: ", collision_shapes.size())
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("damageable") and body != owner:
@@ -107,36 +110,42 @@ func _goto_time(time: float) -> void:
 func _record_frame() -> void:
 	print("Starting frame recording...")  # Debug print
 	
-	# Try to find collision shape again if we don't have it
-	if not collision_shape:
-		for child in get_children():
-			if child is CollisionShape2D:
-				collision_shape = child
-				print("Found collision shape during recording: ", collision_shape.name)
-				break
+	# Try to find collision shapes again if we don't have any
+	if collision_shapes.is_empty():
+		_find_collision_shapes()
 	
-	if not collision_shape:
-		print("No collision shape found! Children nodes: ", get_children())
+	if collision_shapes.is_empty():
+		print("No collision shapes found!")
 		return
 		
 	if recording_animation.is_empty():
 		print("No animation selected!")
 		return
 		
-	var frame_info = {
-		"disabled": collision_shape.disabled,
-		"position": collision_shape.position,
-		"scale": collision_shape.scale
-	}
+	# Create a frame entry for this timestamp if it doesn't exist
+	if not frame_data.has(current_time):
+		frame_data[current_time] = {}
 	
-	# Record shape-specific data
-	if collision_shape.shape is RectangleShape2D:
-		frame_info["shape_size"] = collision_shape.shape.size
-	elif collision_shape.shape is CircleShape2D:
-		frame_info["radius"] = collision_shape.shape.radius
+	# Record data for each collision shape
+	for i in range(collision_shapes.size()):
+		var shape = collision_shapes[i]
+		var shape_id = str(i) + "_" + shape.name
+		
+		var frame_info = {
+			"disabled": shape.disabled,
+			"position": shape.position,
+			"scale": shape.scale
+		}
+		
+		# Record shape-specific data
+		if shape.shape is RectangleShape2D:
+			frame_info["shape_size"] = shape.shape.size
+		elif shape.shape is CircleShape2D:
+			frame_info["radius"] = shape.shape.radius
+		
+		frame_data[current_time][shape_id] = frame_info
 	
-	frame_data[current_time] = frame_info
-	print("Recorded frame at time: ", current_time, " seconds")
+	print("Recorded frame at time: ", current_time, " seconds with ", collision_shapes.size(), " shapes")
 	
 	# Move to next frame
 	current_time += time_between_frames
@@ -152,32 +161,43 @@ func _save_recording_to_animation() -> void:
 		print("Animation not found: ", recording_animation)
 		return
 	
-	# Get the relative path from AnimationPlayer to CollisionShape2D
-	var rel_path = anim_player.get_node("..").get_path_to(collision_shape)
-	print("Animation path to collision shape: ", rel_path)
+	# Dictionary to store track indices for each shape and property
+	var all_tracks = {}
 	
-	# Create or get tracks with correct node paths
-	var tracks = {
-		"disabled": _ensure_track(animation, str(rel_path) + ":disabled", Animation.TYPE_VALUE),
-		"position": _ensure_track(animation, str(rel_path) + ":position", Animation.TYPE_VALUE),
-		"scale": _ensure_track(animation, str(rel_path) + ":scale", Animation.TYPE_VALUE)
-	}
+	# First, ensure all tracks exist
+	for shape_idx in range(collision_shapes.size()):
+		var shape = collision_shapes[shape_idx]
+		var shape_id = str(shape_idx) + "_" + shape.name
+		all_tracks[shape_id] = {}
+		
+		# Get the relative path from AnimationPlayer to CollisionShape2D
+		var rel_path = anim_player.get_node("..").get_path_to(shape)
+		print("Animation path to collision shape ", shape.name, ": ", rel_path)
+		
+		# Create or get tracks with correct node paths
+		all_tracks[shape_id]["disabled"] = _ensure_track(animation, str(rel_path) + ":disabled", Animation.TYPE_VALUE)
+		all_tracks[shape_id]["position"] = _ensure_track(animation, str(rel_path) + ":position", Animation.TYPE_VALUE)
+		all_tracks[shape_id]["scale"] = _ensure_track(animation, str(rel_path) + ":scale", Animation.TYPE_VALUE)
+		
+		# Add shape-specific tracks
+		if shape.shape is RectangleShape2D:
+			all_tracks[shape_id]["shape_size"] = _ensure_track(animation, str(rel_path) + ":shape:size", Animation.TYPE_VALUE)
+		elif shape.shape is CircleShape2D:
+			all_tracks[shape_id]["radius"] = _ensure_track(animation, str(rel_path) + ":shape:radius", Animation.TYPE_VALUE)
 	
-	# Add shape-specific tracks
-	if collision_shape.shape is RectangleShape2D:
-		tracks["shape_size"] = _ensure_track(animation, str(rel_path) + ":shape:size", Animation.TYPE_VALUE)
-	elif collision_shape.shape is CircleShape2D:
-		tracks["radius"] = _ensure_track(animation, str(rel_path) + ":shape:radius", Animation.TYPE_VALUE)
-	
-	# Add keyframes
+	# Add keyframes for all shapes
 	for time in frame_data:
-		var frame = frame_data[time]
-		for property in frame:
-			if tracks.has(property):
-				var track_idx = tracks[property]
-				animation.track_insert_key(track_idx, time, frame[property])
+		for shape_id in frame_data[time]:
+			var frame = frame_data[time][shape_id]
+			
+			# Only add keyframes if we have tracks for this shape
+			if all_tracks.has(shape_id):
+				for property in frame:
+					if all_tracks[shape_id].has(property):
+						var track_idx = all_tracks[shape_id][property]
+						animation.track_insert_key(track_idx, time, frame[property])
 	
-	print("Saved all recorded frames to animation!")
+	print("Saved all recorded frames to animation for ", collision_shapes.size(), " shapes!")
 
 func _ensure_track(animation: Animation, path: String, type: int) -> int:
 	var track_idx = animation.find_track(path, type)

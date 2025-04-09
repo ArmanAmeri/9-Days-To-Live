@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var player = get_tree().get_first_node_in_group("player")
 
 
-var freeForm: bool = true
+var freeForm: bool = false
 var touchingScreenEdge: bool = true
 var targetPos: Vector2
 var target_cursor_speed: float = 300.0  # Speed in pixels per second
@@ -63,6 +63,7 @@ func _process(_delta: float) -> void:
 	#print("last positon: ", lastPos)
 	#print("positon: ", position)
 	targetPos = target.global_position
+	PlayerInfo.cursor_target = targetPos
 	
 	# Set the velocity based on direction and speed
 	velocity = direction.normalized() * target_cursor_speed
