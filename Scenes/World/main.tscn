@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://badsnu5m75c2d" path="res://Scenes/Enemies/enemy_test.tscn" id="5_bs8og"]
 [ext_resource type="PackedScene" uid="uid://coceamwy3pynb" path="res://Scenes/Interactable Objects/test_chest.tscn" id="6_maahp"]
 [ext_resource type="Script" path="res://Data/drop_data.gd" id="7_mysro"]
-[ext_resource type="PackedScene" uid="uid://ba2ek20j8l80s" path="res://Scenes/Enemies/ranged_enemy.tscn" id="8_8dxbi"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemies/ranged_enemy.tscn" id="8_8dxbi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ce7nm"]
 texture = ExtResource("2_dg3lt")
@@ -98,6 +98,7 @@ position = Vector2(160, 100)
 position = Vector2(-92, -30)
 scale = Vector2(1.01253, 1)
 collision_mask = 41
+max_speed = 50
 
 [node name="ItemsOnGround" type="Node2D" parent="."]
 

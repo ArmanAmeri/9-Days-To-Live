@@ -956,11 +956,11 @@ states/Idle/position = Vector2(392, 100)
 states/Run/node = SubResource("AnimationNodeBlendSpace2D_v5uks")
 states/Run/position = Vector2(585, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_lergt"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_4ethl"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_gol2a"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_m3d53"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_wv6pj"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_byl3v"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_u0mr2")]
-graph_offset = Vector2(86.175, -167.673)
+graph_offset = Vector2(113.445, -62.9805)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lmh4r"]
-radius = 7.0
-height = 20.0
+radius = 4.0
+height = 18.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cmhyr"]
 height = 48.0
@@ -990,7 +990,7 @@ texture_filter = 1
 texture = ExtResource("2_37ehg")
 hframes = 7
 vframes = 6
-frame = 8
+frame = 9
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "output_section": true,
@@ -1015,6 +1015,7 @@ texture_filter = 1
 texture = ExtResource("3_k1qj4")
 hframes = 5
 vframes = 4
+frame = 5
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "output_section": true,
@@ -1039,7 +1040,7 @@ texture_filter = 1
 texture = ExtResource("2_sk8in")
 hframes = 5
 vframes = 5
-frame = 2
+frame = 7
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "output_section": true,
@@ -1064,6 +1065,7 @@ texture_filter = 1
 texture = ExtResource("2_5q7l1")
 hframes = 4
 vframes = 3
+frame = 4
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": true,
 "layer_section": true,
@@ -1090,7 +1092,7 @@ texture_filter = 1
 texture = ExtResource("6_lrq05")
 hframes = 5
 vframes = 4
-frame = 1
+frame = 5
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "output_section": true,
@@ -1122,11 +1124,10 @@ parameters/conditions/is_attacking = false
 parameters/conditions/is_idle = false
 parameters/conditions/is_running = false
 parameters/Attack/blend_position = Vector2(0, 0)
-parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = Vector2(1, 0)
 parameters/Run/blend_position = Vector2(0, 0)
 
 [node name="Feet" type="CollisionShape2D" parent="."]
-visible = false
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_lmh4r")
 

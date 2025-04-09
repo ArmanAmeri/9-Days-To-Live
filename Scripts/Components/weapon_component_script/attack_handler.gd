@@ -13,44 +13,51 @@ var can_attack: bool = true
 var attack_timer: Timer
 
 func _ready() -> void:
-	# Check if timer already exists
-	attack_timer = get_node_or_null("AttackTimer")
+	# Remove existing timer if any
+	var existing_timer = get_node_or_null("AttackTimer")
+	if existing_timer:
+		existing_timer.queue_free()
 	
-	# Only create a new timer if one doesn't exist
-	if not attack_timer:
-		attack_timer = Timer.new()
-		attack_timer.name = "AttackTimer"
-		attack_timer.one_shot = true
-		add_child(attack_timer)
+	# Create a new timer
+	attack_timer = Timer.new()
+	attack_timer.name = "AttackTimer"
+	attack_timer.one_shot = true
+	add_child(attack_timer)
 	
-	# Connect the signal regardless
-	if not attack_timer.timeout.is_connected(_on_attack_timer_timeout):
-		attack_timer.timeout.connect(_on_attack_timer_timeout)
+	# Connect with explicit reference to self
+	attack_timer.timeout.connect(self._on_attack_timer_timeout)
+	
+	print("Timer setup complete")
 
-func perform_attack(facing_dir:String) -> void:
+func perform_attack() -> void:
 	if not can_attack:
 		return
 	
 	can_attack = false
 	attack_timer.start(1.0 / attack_data.attack_speed)
 	
-	# After trying thing around, i think it should be a vector faceing_dir and also a rotation on where the attack will be at.
 	if anim_player:
-		if facing_dir == "N":
-			anim_player.play("N")
-		elif facing_dir == "S":
-			anim_player.play("S")
-		elif facing_dir == "E":
-			anim_player.play("E")
-		elif facing_dir == "W":
-			anim_player.play("W")
-	
+		# Connect to the animation_finished signal
+		if not anim_player.animation_finished.is_connected(self._on_animation_finished):
+			anim_player.animation_finished.connect(self._on_animation_finished)
+		
+		anim_player.play("Slash")
+		attack_area.look_at(PlayerInfo.cursor_target)
+		attack_area.rotation -= PI / 2
 	
 	var targets = _get_targets_in_range()
 	for target in targets:
 		attack_data.apply_to_target(target, global_position)
 	
 	attack_performed.emit(attack_data)
+
+# Add this new method to handle animation completion
+func _on_animation_finished(anim_name: String) -> void:
+	if anim_name == "Slash":
+		# Reset to the first frame or default state
+		anim_player.stop()  # This stops the animation and returns to default state
+		# Or alternatively, you can seek to the beginning:
+		# anim_player.seek(0, true)
 
 func _get_targets_in_range() -> Array[Node2D]:
 	var targets: Array[Node2D] = []

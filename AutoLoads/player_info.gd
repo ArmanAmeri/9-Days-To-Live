@@ -1,5 +1,8 @@
 extends Node
 
+#Cursor
+var cursor_target: Vector2
+
 # Temp Stats
 var hp: int
 var pos: Vector2
