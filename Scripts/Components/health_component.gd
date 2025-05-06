@@ -33,6 +33,7 @@ func take_damage(damage_amount: float, damage_type: int = AttackData.DamageType.
 	# Apply damage
 	current_health -= reduced_damage
 	print(current_health)
+	
 	# Emit signals
 	health_changed.emit(current_health, max_health)
 	damage_taken.emit(reduced_damage, damage_type)
@@ -41,10 +42,13 @@ func take_damage(damage_amount: float, damage_type: int = AttackData.DamageType.
 	if current_health <= 0:
 		current_health = 0
 		died.emit()
+		death()
 
-# For backward compatibility with old Attack class
-func damage(attack: Attack) -> void:
-	take_damage(attack.damage)
+func death() -> void:
+	if get_parent().has_method("queue_free"):
+		get_parent().call_deferred("queue_free")
+	else:
+		print( self, "does not have parent method = queue_free")
 
 func heal(amount: int) -> void:
 	current_health += amount

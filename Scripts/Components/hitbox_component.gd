@@ -9,9 +9,9 @@ var active_status_effects: Array[StatusEffect] = []
 
 func _ready() -> void:
 	# Make sure this hitbox can be targeted by attacks
-	add_to_group("damageable")
+	add_to_group("damageable", true)
 
-func take_damage(damage_amount: float, damage_type: int = AttackData.DamageType.SLASHING) -> void:
+func take_damage(damage_amount: float, damage_type: int) -> void:
 	if health_component:
 		health_component.take_damage(damage_amount, damage_type)
 		

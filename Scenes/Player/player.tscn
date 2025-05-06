@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://wv3abl31ronq"]
+[gd_scene load_steps=66 format=3 uid="uid://wv3abl31ronq"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_e3qtb"]
 [ext_resource type="Texture2D" uid="uid://dq1npogea00oj" path="res://Assets/Sprites/Characters/Player-Head.png" id="2_5q7l1"]
@@ -69,18 +69,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [9]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Weapon:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = false
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_cg60o"]
@@ -211,6 +199,21 @@ tracks/4/keys = {
 "values": [13, 14, 13, 13, 14, 13]
 }
 
+[sub_resource type="Animation" id="Animation_mbt3j"]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [34, 35, 36, 37, 5, 5]
+}
+
 [sub_resource type="Animation" id="Animation_44g1e"]
 length = 0.6
 loop_mode = 1
@@ -261,18 +264,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Weapon:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = false
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 0, 0, 0, 0, 0]
 }
 
 [sub_resource type="Animation" id="Animation_pihly"]
@@ -325,18 +316,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [11]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Weapon:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = false
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_x3sc3"]
@@ -467,6 +446,21 @@ tracks/4/keys = {
 "values": [11, 12, 11, 11, 12, 11]
 }
 
+[sub_resource type="Animation" id="Animation_fv5rc"]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [23, 24, 25, 26, 27, 28]
+}
+
 [sub_resource type="Animation" id="Animation_js5ix"]
 length = 0.1
 loop_mode = 1
@@ -517,18 +511,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [12]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Weapon:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = false
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_5yeam"]
@@ -659,6 +641,37 @@ tracks/4/keys = {
 "values": [9, 10, 10, 9, 10, 10]
 }
 
+[sub_resource type="Animation" id="Animation_h52un"]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [17, 18, 19, 20, 21, 22]
+}
+
+[sub_resource type="Animation" id="Animation_nchux"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 0, 0, 0, 0]
+}
+
 [sub_resource type="Animation" id="Animation_gfd33"]
 length = 0.1
 loop_mode = 1
@@ -709,18 +722,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [13]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Weapon:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = false
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_3j1dy"]
@@ -851,24 +852,64 @@ tracks/4/keys = {
 "values": [15, 16, 15, 15, 16, 15]
 }
 
+[sub_resource type="Animation" id="Animation_g5rm3"]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [29, 30, 31, 32, 33, 33]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ln2fe"]
 _data = {
 "E": SubResource("Animation_fxx4q"),
 "E-idle": SubResource("Animation_cg60o"),
 "E-run": SubResource("Animation_siwty"),
+"E-slash": SubResource("Animation_mbt3j"),
 "Funny_walk": SubResource("Animation_44g1e"),
 "N": SubResource("Animation_pihly"),
 "N-idle": SubResource("Animation_x3sc3"),
 "N-run": SubResource("Animation_p7gvv"),
+"N-slash": SubResource("Animation_fv5rc"),
 "S": SubResource("Animation_js5ix"),
 "S-idle": SubResource("Animation_5yeam"),
 "S-run": SubResource("Animation_fusgr"),
+"S-slash": SubResource("Animation_h52un"),
+"Slash": SubResource("Animation_nchux"),
 "W": SubResource("Animation_gfd33"),
 "W-idle": SubResource("Animation_3j1dy"),
-"W-run": SubResource("Animation_g2rgo")
+"W-run": SubResource("Animation_g2rgo"),
+"W-slash": SubResource("Animation_g5rm3")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_djit5"]
+animation = &"S-slash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2wxks"]
+animation = &"N-slash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j1kba"]
+animation = &"W-slash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fog55"]
+animation = &"E-slash"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_51wl8"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_djit5")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_2wxks")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_j1kba")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_fog55")
+blend_point_3/pos = Vector2(1, 0)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jyork"]
@@ -1040,7 +1081,7 @@ texture_filter = 1
 texture = ExtResource("2_sk8in")
 hframes = 5
 vframes = 5
-frame = 3
+frame = 4
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "output_section": true,
@@ -1090,9 +1131,9 @@ metadata/_aseprite_wizard_source_file_hash_ = "b92f41e77dca5162883cbecef24b9c41"
 [node name="Weapon" type="Sprite2D" parent="Sprites"]
 texture_filter = 1
 texture = ExtResource("6_lrq05")
-hframes = 5
-vframes = 4
-frame = 1
+hframes = 7
+vframes = 6
+frame = 2
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "output_section": true,
@@ -1109,9 +1150,9 @@ metadata/_aseprite_wizard_config_ = {
 "only_visible": true,
 "player": "Sprites/Animations",
 "slice": "",
-"source": "res://Assets/Aseprite/Player.aseprite"
+"source": "res://Assets/Aseprite/IronWeapon.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "5cea3d23751dde82b5e0ba90ab0ebd9d"
+metadata/_aseprite_wizard_source_file_hash_ = "898437165aa1d6bc7fcddd81dbe5c63b"
 
 [node name="WeaponHolder" type="Node2D" parent="."]
 script = ExtResource("11_m24io")

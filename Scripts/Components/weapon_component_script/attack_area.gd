@@ -72,7 +72,8 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		for shape in collision_shapes:
 			shape.disabled = true
-		body_entered.connect(_on_body_entered)
+		# Change this line to connect to area_entered instead of body_entered
+		area_entered.connect(_on_area_entered)
 	else:
 		if anim_player:
 			anim_player.stop()
@@ -91,11 +92,21 @@ func _find_collision_shapes() -> void:
 	
 	print("Total collision shapes found: ", collision_shapes.size())
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("damageable") and body != owner:
+# Replace _on_body_entered with _on_area_entered
+func _on_area_entered(area: Area2D) -> void:
+	print("Area entered attack area: ", area.name)
+	print("Is HitboxComponent: ", area is HitboxComponent)
+	print("Is in damageable group: ", area.is_in_group("damageable"))
+	print("Is not owner: ", area != owner)
+	
+	# Check if it's a HitboxComponent and in the damageable group
+	if area is HitboxComponent and area.is_in_group("damageable") and area != owner:
+		print("Valid hitbox detected! Applying damage...")
 		if attack_data:
-			attack_data.apply_to_target(body, global_position)
-		hit_confirmed.emit(body)
+			attack_data.apply_to_target(area, global_position)
+		else:
+			print("ERROR: No attack_data available!")
+		hit_confirmed.emit(area)
 
 func _goto_time(time: float) -> void:
 	if not anim_player or recording_animation.is_empty():

@@ -4,3 +4,7 @@
 
 [node name="ToPlayerGravity" type="Area2D"]
 script = ExtResource("1_icqbn")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

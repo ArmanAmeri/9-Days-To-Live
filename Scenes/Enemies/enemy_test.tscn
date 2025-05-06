@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://badsnu5m75c2d"]
+[gd_scene load_steps=19 format=3 uid="uid://badsnu5m75c2d"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/enemy_test.gd" id="1_bd7i7"]
 [ext_resource type="Texture2D" uid="uid://7n6qnks6iptt" path="res://Assets/Sprites/Enemies/enemyplaceholder.png" id="1_iicjj"]
+[ext_resource type="Script" path="res://Data/drop_data.gd" id="2_inkq2"]
 [ext_resource type="PackedScene" uid="uid://dufp4cjrdgk4t" path="res://Scenes/Components/movement_component.tscn" id="3_sm3vc"]
 [ext_resource type="PackedScene" uid="uid://c5w2f44wlbeyd" path="res://Scenes/Components/health_component.tscn" id="4_f6jrb"]
+[ext_resource type="PackedScene" uid="uid://c3sdl7hy2hycs" path="res://Scenes/Components/item_dropper_component.tscn" id="5_kfbbm"]
 [ext_resource type="PackedScene" uid="uid://brrw37x1774kf" path="res://Scenes/Components/hitbox_component.tscn" id="5_lyqdk"]
 [ext_resource type="PackedScene" path="res://Scenes/Components/los_component.tscn" id="6_ctwcf"]
 [ext_resource type="PackedScene" uid="uid://cyasu10ogqoo3" path="res://Scenes/Components/pathfinding_component.tscn" id="6_tu5bt"]
@@ -12,6 +14,13 @@
 [ext_resource type="Script" path="res://Scripts/States/enemy_patrolling.gd" id="9_4m5aa"]
 [ext_resource type="Script" path="res://Scripts/States/enemy_idle.gd" id="10_1vsje"]
 [ext_resource type="Script" path="res://Scripts/States/enemy_chasing.gd" id="11_twb2j"]
+
+[sub_resource type="Resource" id="Resource_opnti"]
+script = ExtResource("2_inkq2")
+item_ID = "low_xp"
+probability = 100.0
+min_amount = 10
+max_amount = 10
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvtoo"]
 radius = 7.0
@@ -26,23 +35,28 @@ radius = 39.1152
 collision_layer = 2
 collision_mask = 40
 script = ExtResource("1_bd7i7")
+drops = Array[ExtResource("2_inkq2")]([SubResource("Resource_opnti")])
 max_speed = 80
+
+[node name="Feet" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CircleShape2D_mvtoo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_iicjj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
-rotation = 1.5708
-shape = SubResource("CircleShape2D_mvtoo")
-
 [node name="MovementComponent" parent="." instance=ExtResource("3_sm3vc")]
 speed = 50.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_f6jrb")]
+max_health = 10
+
+[node name="ItemDropperComponent" parent="." instance=ExtResource("5_kfbbm")]
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_lyqdk")]
+collision_layer = 2
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]

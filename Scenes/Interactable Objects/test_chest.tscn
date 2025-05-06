@@ -81,6 +81,7 @@ texture_filter = 1
 texture = ExtResource("1_s07jr")
 hframes = 2
 vframes = 2
+frame = 3
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
 "output_section": true,

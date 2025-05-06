@@ -39,6 +39,7 @@ enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
 [global_group]
 
 xp=""
+damageable=""
 
 [input]
 

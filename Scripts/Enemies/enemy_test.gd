@@ -9,10 +9,15 @@ class_name Enemy
 @onready var state_machine: Node = $StateMachine
 var dash_attack_cooldown: Timer
 
+@onready var health_component: HealthComponent = $HealthComponent
+@onready var item_dropper_component: Node2D = $ItemDropperComponent
+@export var drops : Array[DropData]
+
 @export var max_speed = 50
 var current_speed = max_speed
 
 func _ready() -> void:
+	health_component.connect("died", on_death)
 	dash_attack_cooldown = Timer.new()
 	dash_attack_cooldown.wait_time = 0.5
 	#pathfinding_component.connect("move_input", _on_move_input)
@@ -23,3 +28,6 @@ func _ready() -> void:
 func _on_move_input(direction: Vector2) -> void:
 	#print(str(self.name) + " the direction is " + str(direction))
 	movement_component.set_velocity(direction)
+
+func on_death() -> void:
+	item_dropper_component.call_deferred("drop_items")

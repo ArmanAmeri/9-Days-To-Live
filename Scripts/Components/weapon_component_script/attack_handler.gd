@@ -18,6 +18,8 @@ func _ready() -> void:
 	if existing_timer:
 		existing_timer.queue_free()
 	
+	attack_area.visible = false
+	
 	# Create a new timer
 	attack_timer = Timer.new()
 	attack_timer.name = "AttackTimer"
@@ -36,7 +38,12 @@ func perform_attack() -> void:
 	can_attack = false
 	attack_timer.start(1.0 / attack_data.attack_speed)
 	
+	# IMPORTANT: Enable collision shapes during attack
+	for shape in attack_area.collision_shapes:
+		shape.disabled = false
+	
 	if anim_player:
+		attack_area.visible = true
 		# Connect to the animation_finished signal
 		if not anim_player.animation_finished.is_connected(self._on_animation_finished):
 			anim_player.animation_finished.connect(self._on_animation_finished)
@@ -45,32 +52,38 @@ func perform_attack() -> void:
 		attack_area.look_at(PlayerInfo.cursor_target)
 		attack_area.rotation -= PI / 2
 	
+	# Rest of the existing code...
+	
 	var targets = _get_targets_in_range()
 	for target in targets:
 		attack_data.apply_to_target(target, global_position)
 	
 	attack_performed.emit(attack_data)
 
-# Add this new method to handle animation completion
 func _on_animation_finished(anim_name: String) -> void:
 	if anim_name == "Slash":
+		# Disable collision shapes after attack animation
+		for shape in attack_area.collision_shapes:
+			shape.disabled = true
+			
 		# Reset to the first frame or default state
 		anim_player.stop()  # This stops the animation and returns to default state
-		# Or alternatively, you can seek to the beginning:
-		# anim_player.seek(0, true)
+		attack_area.visible = false
 
 func _get_targets_in_range() -> Array[Node2D]:
 	var targets: Array[Node2D] = []
-	var bodies = attack_area.get_overlapping_bodies()
 	
-	for body in bodies:
-		if _is_valid_target(body):
-			targets.append(body)
+	# Check for overlapping areas (hitboxes) instead of bodies
+	var areas = attack_area.get_overlapping_areas()
+	
+	for area in areas:
+		if _is_valid_target(area):
+			targets.append(area)
 	
 	return targets
 
-func _is_valid_target(body: Node) -> bool:
-	return body.is_in_group("damageable") and body != owner
+func _is_valid_target(node: Node) -> bool:
+	return node is Area2D and node.is_in_group("damageable") and node != owner
 
 func _on_attack_timer_timeout() -> void:
 	can_attack = true

@@ -8,7 +8,7 @@ var weapon = load("res://Scenes/Weapons/Sword/iron_sword.tscn")
 func _ready() -> void:
 	equip_weapon(weapon)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("attack"):
 		attack()
 	
